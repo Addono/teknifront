@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from '../logo.svg';
 import mqtt from 'mqtt'
+import SetBrightnessButton from "../components/SetBrightnessButton";
 
 interface ITogglePageProps {
 }
@@ -26,16 +27,22 @@ const TogglePage: React.FunctionComponent<ITogglePageProps> = (props) => {
         })
     }, [client])
 
+    const setBrightness = (brightness: number) => client && client.publish(topic, brightness, {qos: 2, retain: true})
+
     return (
         <div className="App">
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
                     <p>{ client ? "Connected" : "Not connected"}</p>
                     <p>{ state }</p>
-                    <button onClick={() => client && client.publish(topic, state === '0' ? '255' : '0', { qos: 2, retain: true } )} disabled={ !client || !state }>Toggle</button>
+                    {/*<button onClick={() => client && client.publish(topic, state === '0' ? '255' : '0', { qos: 2, retain: true } )} disabled={ !client || !state }>Toggle</button>*/}
+                    <SetBrightnessButton brightness={0} setBrightness={client ? setBrightness : null}/>
+                    <SetBrightnessButton brightness={255} setBrightness={client ? setBrightness : null}/>
             </header>
         </div>
     );
+
+
 };
 
 export default TogglePage;
