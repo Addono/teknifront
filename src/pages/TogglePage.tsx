@@ -14,7 +14,7 @@ const MQTT_OPTIONS: IClientPublishOptions = { qos: 2, retain: true }
 
 const TogglePage: React.FC<ITogglePageProps> = (props) => {
     const [client, setClient] = useState<mqtt.MqttClient>()
-    const [state, setState] = useState<{brightness: number} | null>(null)
+    const [brightness, setBrightness] = useState<{brightness: number} | null>(null)
 
     React.useEffect(() => {
         let client = mqtt.connect('wss://test.mosquitto.org:8081')
@@ -26,17 +26,19 @@ const TogglePage: React.FC<ITogglePageProps> = (props) => {
     }, [])
 
     React.useEffect(() => {
-        client && client.on('message', (topic, message: string) => {
-            setState(JSON.parse(message))
+        client && client.on('message', (topic: string, message: string) => {
+            if (topic.endsWith("brightness")) {
+                setBrightness(JSON.parse(message))
+            }
         })
     }, [client])
 
-    const setBrightness = (brightness: number): void => {
+    const sendBrightness = (brightness: number): void => {
         const message = {brightness}
         client && client.publish('tek/staging/light/1/brightness', JSON.stringify(message), MQTT_OPTIONS)
     }
 
-    const setColor = (color: Color) => {
+    const sendColor = (color: Color) => {
         const message = {transition: "fade", params: color}
         client && client.publish('tek/staging/light/1/state', JSON.stringify(message), MQTT_OPTIONS)
     }
@@ -46,12 +48,12 @@ const TogglePage: React.FC<ITogglePageProps> = (props) => {
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
                 <p>{client ? "Connected" : "Not connected"}</p>
-                <p>Brightness: {state ? state.brightness : "Loading..."}</p>
+                <p>Brightness: {brightness ? brightness.brightness : "Loading..."}</p>
                 <Switch
-                    isOn={state && state.brightness === 1}
-                    handleToggle={() => state !== null && setBrightness(state.brightness === 1 ? 0.0 : 1.0)}
+                    isOn={brightness && brightness.brightness === 1}
+                    handleToggle={() => brightness !== null && sendBrightness(brightness.brightness === 1 ? 0.0 : 1.0)}
                 />
-                <CircularColorPicker onColorChange={setColor} />
+                <CircularColorPicker onColorChange={sendColor} />
             </header>
         </div>
     )
