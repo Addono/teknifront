@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@radial-color-picker/react-color-picker": "^1.0.0",
     "@types/jest": "24.0.23",
     "@types/node": "12.12.12",
     "@types/react": "16.9.13",
     "@types/react-dom": "16.9.4",
+    "hsl-to-rgb-for-reals": "^1.1.1",
     "mqtt": "^3.0.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
