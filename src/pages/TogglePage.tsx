@@ -48,17 +48,21 @@ const TogglePage: React.FC<ITogglePageProps> = () => {
     return (
         <div className="App">
             <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>{client ? "Connected" : "Not connected"}</p>
-                <p>Brightness: {brightness ? brightness.brightness : "Loading..."}</p>
-                <Switch
-                    isOn={brightness && brightness.brightness === 1}
-                    handleToggle={() => brightness !== null && sendBrightness(brightness.brightness === 1 ? 0.0 : 1.0)}
-                />
-                <CircularColorPicker
-                    color={state ? state.params : { red: 0, blue: 0, green: 0 }}
-                    onColorChange={sendColor}
-                />
+                {!client ?
+                    <p>Connecting...</p>
+                    :
+                    <>
+                        <CircularColorPicker
+                            color={state ? state.params : { red: 0, blue: 0, green: 0 }}
+                            onColorChange={sendColor}
+                        />
+                        <br/>
+                        <Switch
+                            isOn={brightness && brightness.brightness === 1}
+                            handleToggle={() => brightness !== null && sendBrightness(brightness.brightness === 1 ? 0.0 : 1.0)}
+                        />
+                    </>
+                }
             </header>
         </div>
     )
