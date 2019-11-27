@@ -1,11 +1,11 @@
-import React from 'react';
-import './App.css';
-import TogglePage from './pages/TogglePage';
+import React from 'react'
+import './App.css'
+import TogglePage from './pages/TogglePage'
 
 const App: React.FC = () => {
   return (
-      <TogglePage />
-  );
+    <TogglePage />
+  )
 }
 
-export default App;
+export default App
