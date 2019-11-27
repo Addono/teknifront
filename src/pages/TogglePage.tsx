@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import logo from '../logo.svg'
 import mqtt, { IClientPublishOptions } from 'mqtt'
 import Switch from "../components/Switch"
 import Color from '../interfaces/Color'
 import CircularColorPicker from "../components/CircularColorPicker"
+import BarLoader from 'react-spinners/BarLoader'
 
 interface ITogglePageProps {
 }
@@ -49,14 +49,19 @@ const TogglePage: React.FC<ITogglePageProps> = () => {
         <div className="App">
             <header className="App-header">
                 {!client ?
-                    <p>Connecting...</p>
+                    <>
+                        <BarLoader
+                            color={'#09d3ac'}
+                        />
+                        <p>Connecting...</p>
+                    </>
                     :
                     <>
                         <CircularColorPicker
                             color={state ? state.params : { red: 0, blue: 0, green: 0 }}
                             onColorChange={sendColor}
                         />
-                        <br/>
+                        <br />
                         <Switch
                             isOn={brightness && brightness.brightness === 1}
                             handleToggle={() => brightness !== null && sendBrightness(brightness.brightness === 1 ? 0.0 : 1.0)}
