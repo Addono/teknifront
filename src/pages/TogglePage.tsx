@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import logo from '../logo.svg'
 import mqtt, {IClientPublishOptions} from 'mqtt'
-import SetBrightnessButton from "../components/SetBrightnessButton"
 import Switch from "../components/Switch"
 import Color from "../interfaces/Color";
 import CircularColorPicker from "../components/CircularColorPicker";
