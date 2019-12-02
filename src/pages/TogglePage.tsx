@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import mqtt, { IClientPublishOptions } from 'mqtt'
-import Switch from "../components/Switch"
 import Color from '../interfaces/Color'
 import CircularColorPicker from "../components/CircularColorPicker"
 import BarLoader from 'react-spinners/BarLoader'
+import BrightnessSlider from '../components/BrightnessSlider'
 
 interface ITogglePageProps {
 }
@@ -62,10 +62,12 @@ const TogglePage: React.FC<ITogglePageProps> = () => {
                             onColorChange={sendColor}
                         />
                         <br />
-                        <Switch
-                            isOn={brightness && brightness.brightness === 1}
-                            handleToggle={() => brightness !== null && sendBrightness(brightness.brightness === 1 ? 0.0 : 1.0)}
-                        />
+                        <div style={{ width: "90%", maxWidth: "15em" }}>
+                            <BrightnessSlider
+                                brightness={(brightness && brightness.brightness) || 0}
+                                setBrightness={sendBrightness}
+                            />
+                        </div>
                     </>
                 }
             </header>
