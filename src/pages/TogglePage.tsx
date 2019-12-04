@@ -16,7 +16,7 @@ const TogglePage: React.FC<ITogglePageProps> = () => {
     const [state, setState] = useState<{ transition: string, params: Color }>()
 
     React.useEffect(() => {
-        let client = mqtt.connect('wss://test.mosquitto.org:8081')
+        let client = mqtt.connect('wss://broker.hivemq.com:8000')
 
         client.on('connect', function () {
             client.subscribe('tek/staging/light/1/#')
