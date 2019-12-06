@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import mqtt, { IClientPublishOptions } from 'mqtt'
+import React, {useState} from 'react'
+import mqtt, {IClientPublishOptions} from 'mqtt'
 import Color from '../interfaces/Color'
 import CircularColorPicker from "../components/CircularColorPicker"
 import BarLoader from 'react-spinners/BarLoader'
@@ -8,7 +8,7 @@ import TransitionSelector from '../components/TransitionSelector'
 
 type Message = { transition: string, params: Color }
 
-const MQTT_OPTIONS: IClientPublishOptions = { qos: 2, retain: true }
+const MQTT_OPTIONS: IClientPublishOptions = {qos: 2, retain: true}
 
 const ControlPage: React.FC = () => {
     const [client, setClient] = useState<mqtt.MqttClient>()
@@ -45,17 +45,17 @@ const ControlPage: React.FC = () => {
 
         sendStateUpdateMessage({
             transition,
-            params: state?.params || { red: 1, blue: 1, green: 1 },
+            params: state?.params || {red: 1, blue: 1, green: 1},
         })
     }
 
     const sendStateUpdateMessage = (message: Message) => {
         client && client.publish('tek/staging/light/1/state', JSON.stringify(message), MQTT_OPTIONS)
-            && setState(message)
+        && setState(message)
     }
 
     const sendBrightness = (brightness: number) => {
-        const message = { brightness }
+        const message = {brightness}
         client && client.publish('tek/staging/light/1/brightness', JSON.stringify(message), MQTT_OPTIONS)
     }
 
@@ -71,19 +71,21 @@ const ControlPage: React.FC = () => {
                     </>
                     :
                     <>
-                        <TransitionSelector setTransition={updateTransition} transition={state ? state.transition : "None"} />
-                        <br />
-                        <CircularColorPicker
-                            color={state ? state.params : { red: 0, blue: 0, green: 0 }}
-                            onColorChange={updateColor}
-                        />
-                        <br />
-                        <div style={{ width: "90%", maxWidth: "15em" }}>
+                        <TransitionSelector setTransition={updateTransition} transition={state ? state.transition : "None"}/>
+                        <br/>
+                        <div style={{width: "90%", maxWidth: "15em"}}>
                             <BrightnessSlider
                                 brightness={(brightness && brightness.brightness) || 0}
                                 setBrightness={sendBrightness}
                             />
                         </div>
+                        <br/>
+                        {state?.transition !== "thermalCycle" &&
+                            <CircularColorPicker
+                                color={state ? state.params : {red: 0, blue: 0, green: 0}}
+                                onColorChange={updateColor}
+                            />
+                        }
                     </>
                 }
             </header>
