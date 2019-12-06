@@ -42,6 +42,7 @@ const ControlPage: React.FC = () => {
     }
 
     const updateTransition = (transition: string) => {
+
         sendStateUpdateMessage({
             transition,
             params: state?.params || { red: 1, blue: 1, green: 1 },
@@ -70,7 +71,7 @@ const ControlPage: React.FC = () => {
                     </>
                     :
                     <>
-                        <TransitionSelector setTransition={updateTransition} />
+                        <TransitionSelector setTransition={updateTransition} transition={state ? state.transition : "None"} />
                         <br />
                         <CircularColorPicker
                             color={state ? state.params : { red: 0, blue: 0, green: 0 }}
