@@ -4,16 +4,16 @@ import Color from '../interfaces/Color'
 import CircularColorPicker from "../components/CircularColorPicker"
 import BarLoader from 'react-spinners/BarLoader'
 import BrightnessSlider from '../components/BrightnessSlider'
+import TransitionSelector from '../components/TransitionSelector'
 
-interface ITogglePageProps {
-}
+type Message = { transition: string, params: Color }
 
 const MQTT_OPTIONS: IClientPublishOptions = { qos: 2, retain: true }
 
-const ControlPage: React.FC<ITogglePageProps> = () => {
+const ControlPage: React.FC = () => {
     const [client, setClient] = useState<mqtt.MqttClient>()
     const [brightness, setBrightness] = useState<{ brightness: number } | null>(null)
-    const [state, setState] = useState<{ transition: string, params: Color }>()
+    const [state, setState] = useState<Message>()
 
     React.useEffect(() => {
         let client = mqtt.connect('wss://mqtt.eclipse.org:443/mqtt')
@@ -34,15 +34,28 @@ const ControlPage: React.FC<ITogglePageProps> = () => {
         })
     }, [client])
 
-    const sendBrightness = (brightness: number): void => {
-        const message = { brightness }
-        client && client.publish('tek/staging/light/1/brightness', JSON.stringify(message), MQTT_OPTIONS)
+    const updateColor = (color: Color) => {
+        sendStateUpdateMessage({
+            transition: state?.transition || "fade",
+            params: color,
+        })
     }
 
-    const sendColor = (color: Color) => {
-        const message = { transition: "fade", params: color }
+    const updateTransition = (transition: string) => {
+        sendStateUpdateMessage({
+            transition,
+            params: state?.params || { red: 1, blue: 1, green: 1 },
+        })
+    }
+
+    const sendStateUpdateMessage = (message: Message) => {
         client && client.publish('tek/staging/light/1/state', JSON.stringify(message), MQTT_OPTIONS)
             && setState(message)
+    }
+
+    const sendBrightness = (brightness: number) => {
+        const message = { brightness }
+        client && client.publish('tek/staging/light/1/brightness', JSON.stringify(message), MQTT_OPTIONS)
     }
 
     return (
@@ -57,9 +70,11 @@ const ControlPage: React.FC<ITogglePageProps> = () => {
                     </>
                     :
                     <>
+                        <TransitionSelector setTransition={updateTransition} />
+                        <br />
                         <CircularColorPicker
                             color={state ? state.params : { red: 0, blue: 0, green: 0 }}
-                            onColorChange={sendColor}
+                            onColorChange={updateColor}
                         />
                         <br />
                         <div style={{ width: "90%", maxWidth: "15em" }}>
