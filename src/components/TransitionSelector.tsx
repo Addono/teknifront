@@ -9,7 +9,7 @@ interface ITransitionSelectorProps {
 }
 
 export enum Transitions {
-  "fade = " = "Fade",
+  "fade" = "Fade",
   "sudden" = "Sudden",
   "thermalCycle" = "Thermal Cycle"
 }
