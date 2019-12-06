@@ -10,7 +10,7 @@ interface ITogglePageProps {
 
 const MQTT_OPTIONS: IClientPublishOptions = { qos: 2, retain: true }
 
-const TogglePage: React.FC<ITogglePageProps> = () => {
+const ControlPage: React.FC<ITogglePageProps> = () => {
     const [client, setClient] = useState<mqtt.MqttClient>()
     const [brightness, setBrightness] = useState<{ brightness: number } | null>(null)
     const [state, setState] = useState<{ transition: string, params: Color }>()
@@ -77,4 +77,4 @@ const TogglePage: React.FC<ITogglePageProps> = () => {
 
 }
 
-export default TogglePage
+export default ControlPage

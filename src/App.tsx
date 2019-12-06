@@ -1,11 +1,11 @@
 import React from 'react'
 import './App.css'
-import TogglePage from './pages/TogglePage'
+import ControlPage from './pages/ControlPage'
 import { Layout } from 'antd'
 
 const App: React.FC = () => (
   <Layout>
-    <TogglePage />
+    <ControlPage />
   </Layout>
 )
 
