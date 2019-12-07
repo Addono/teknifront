@@ -1,7 +1,6 @@
 import * as React from 'react'
 
 import { Radio } from 'antd'
-import Color from "../interfaces/Color";
 
 interface ITransitionSelectorProps {
   setTransition: (transition: string) => void,
@@ -14,12 +13,10 @@ export enum Transitions {
   "thermalCycle" = "Thermal Cycle"
 }
 
-
-
-const TransitionSelector: React.FC<ITransitionSelectorProps> = ({ setTransition , transition }) => (
-  <Radio.Group value={transition} onChange={({target: {value}}) => setTransition(value)}>
+const TransitionSelector: React.FC<ITransitionSelectorProps> = ({ setTransition, transition }) => (
+  <Radio.Group value={transition} onChange={({ target: { value } }) => setTransition(value)}>
     {Object.entries(Transitions).map(([id, name]) =>
-      <Radio.Button  value={id} key={id}>{name}</Radio.Button>
+      <Radio.Button value={id} key={id}>{name}</Radio.Button>
     )}
   </Radio.Group>
 )
