@@ -1,9 +1,5 @@
-@import '~antd/dist/antd.css';
-
 .App {
   text-align: center;
-  background-color: #282c34;
-  color: white;
 }
 
 .App-logo {
@@ -17,8 +13,4 @@
   align-items: center;
   margin-top: 5em;
   font-size: calc(10px + 2vmin);
-}
-
-.App-link {
-  color: #09d3ac;
 }
