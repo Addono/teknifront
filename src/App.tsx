@@ -9,7 +9,7 @@ const App: React.FC = () => (
       <header className="App-header">
         <Row>
           <Col span={8}>
-            <img src={require('./logo.png')} />
+            <img src={require('./logo.png')} alt={""} />
           </Col>
 
           <Col span={16}>
