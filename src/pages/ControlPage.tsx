@@ -65,12 +65,10 @@ const ControlPage: React.FC = () => {
     return <>
         <TransitionSelector setTransition={updateTransition} transition={state ? state.transition : "None"} />
         <br />
-        <div style={{ width: "90%", maxWidth: "15em" }}>
-            <BrightnessSlider
-                brightness={(brightness && brightness.brightness) || 0}
-                setBrightness={sendBrightness}
-            />
-        </div>
+        <BrightnessSlider
+            brightness={(brightness && brightness.brightness) || 0}
+            setBrightness={sendBrightness}
+        />
         <br />
         {state?.transition !== "thermalCycle" &&
             <CircularColorPicker
