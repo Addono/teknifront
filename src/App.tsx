@@ -5,8 +5,12 @@ import { Layout } from 'antd'
 
 const App: React.FC = () => (
   <Layout>
-    <ControlPage />
-  </Layout>
+    <div className="App">
+      <header className="App-header">
+        <ControlPage />
+      </header>
+    </div>
+  </Layout >
 )
 
 export default App
