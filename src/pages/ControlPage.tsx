@@ -9,13 +9,14 @@ import { Spin, Button, notification } from 'antd'
 type Message = { transition: string, params: Color }
 
 const MQTT_OPTIONS: IClientPublishOptions = { qos: 2, retain: true }
+const MQTT_CHANNEL_PREFIX = "tek/staging/light/1"
 
 const sendStateUpdateMessage = (client: mqtt.MqttClient, message: Message) => (
-    client.publish('tek/staging/light/1/state', JSON.stringify(message), MQTT_OPTIONS)
+    client.publish(`${MQTT_CHANNEL_PREFIX}/state`, JSON.stringify(message), MQTT_OPTIONS)
 )
 
 const sendBrightness = (client: mqtt.MqttClient, brightness: number) => (
-    client.publish('tek/staging/light/1/brightness', JSON.stringify({ brightness }), MQTT_OPTIONS)
+    client.publish(`${MQTT_CHANNEL_PREFIX}/brightness`, JSON.stringify({ brightness }), MQTT_OPTIONS)
 )
 
 const createTimeoutNotification = (client: mqtt.MqttClient) => (
@@ -38,7 +39,7 @@ const ControlPage: React.FC = () => {
         let client = mqtt.connect('wss://mqtt.eclipse.org:443/mqtt')
 
         client.on('connect', () => {
-            client.subscribe('tek/staging/light/1/#')
+            client.subscribe(`${MQTT_CHANNEL_PREFIX}/#`)
             setClient(client)
 
             timeoutReference.current = setTimeout(() => createTimeoutNotification(client), 1000)
