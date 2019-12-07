@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import mqtt, { IClientPublishOptions } from 'mqtt'
 import Color from '../interfaces/Color'
 import CircularColorPicker from "../components/CircularColorPicker"
-import BarLoader from 'react-spinners/BarLoader'
 import BrightnessSlider from '../components/BrightnessSlider'
 import TransitionSelector from '../components/TransitionSelector'
+import { Spin } from 'antd'
 
 type Message = { transition: string, params: Color }
 
@@ -59,10 +59,7 @@ const ControlPage: React.FC = () => {
     }
 
     if (!client) {
-        return <>
-            <BarLoader color={'#09d3ac'} />
-            <p>Connecting...</p>
-        </>
+        return <Spin tip={"Connecting..."} size={"large"} />
     }
 
     return <>
