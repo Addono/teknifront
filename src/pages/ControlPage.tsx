@@ -18,14 +18,14 @@ const ControlPage: React.FC = () => {
     React.useEffect(() => {
         let client = mqtt.connect('wss://mqtt.eclipse.org:443/mqtt')
 
-        client.on('connect', function () {
+        client.on('connect', () => {
             client.subscribe('tek/staging/light/1/#')
             setClient(client)
         })
     }, [])
 
     React.useEffect(() => {
-        client && client.on('message', (topic: string, message: string) => {
+        client?.on('message', (topic: string, message: string) => {
             if (topic.endsWith("brightness")) {
                 setBrightness(JSON.parse(message))
             } else if (topic.endsWith("state")) {
@@ -36,7 +36,7 @@ const ControlPage: React.FC = () => {
 
     const updateColor = (color: Color) => {
         sendStateUpdateMessage({
-            transition: state?.transition || "fade",
+            transition: state?.transition ?? "fade",
             params: color,
         })
     }
@@ -44,7 +44,7 @@ const ControlPage: React.FC = () => {
     const updateTransition = (transition: string) => {
         sendStateUpdateMessage({
             transition,
-            params: state?.params || { red: 1, blue: 1, green: 1 },
+            params: state?.params ?? { red: 1, blue: 1, green: 1 },
         })
     }
 
@@ -63,16 +63,16 @@ const ControlPage: React.FC = () => {
     }
 
     return <>
-        <TransitionSelector setTransition={updateTransition} transition={state ? state.transition : "None"} />
+        <TransitionSelector setTransition={updateTransition} transition={state?.transition ?? "None"} />
         <br />
         <BrightnessSlider
-            brightness={(brightness && brightness.brightness) || 0}
+            brightness={brightness?.brightness ?? 0}
             setBrightness={sendBrightness}
         />
         <br />
         {state?.transition !== "thermalCycle" &&
             <CircularColorPicker
-                color={state ? state.params : { red: 0, blue: 0, green: 0 }}
+                color={state?.params ?? { red: 0, blue: 0, green: 0 }}
                 onColorChange={updateColor}
             />
         }
