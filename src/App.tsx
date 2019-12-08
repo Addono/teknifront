@@ -1,27 +1,22 @@
 import React from 'react'
 import './App.css'
 import ControlPage from './pages/ControlPage'
-import { Layout, Typography, Row, Col } from 'antd'
+import { Layout, Typography } from 'antd'
+
+const { Header, Content, Footer } = Layout
+const { Title } = Typography
 
 const App: React.FC = () => (
-  <Layout>
-    <div className="App">
-      <header className="App-header">
-        <Row>
-          <Col span={8}>
-            <img src={require('./logo.png')} alt={""} />
-          </Col>
+  <Layout className="App">
+    <Header className="App-header">
+      <img src={require('./logo.png')} alt={""} className={"App-logo"} />
+      <Title className={"App-title"}>Teknifront</Title>
+    </Header>
 
-          <Col span={16}>
-            <Typography.Title>Teknifront</Typography.Title>
-          </Col>
-        </Row>
-      </header>
-      <Row>
-        <ControlPage />
-      </Row>
-    </div>
-  </Layout >
+    <Content className="App-content">
+      <ControlPage />
+    </Content>
+  </Layout>
 )
 
 export default App

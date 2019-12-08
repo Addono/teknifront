@@ -1,16 +1,30 @@
-.App {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.App-header {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
 }
 
-.App-header {
-  margin-top: 5em;
-  margin-bottom: 1em;
-  font-size: calc(10px + 2vmin);
+.App-header .App-logo {
+  float: left;
+  margin: 8px 16px 8px 0;
+  height: 48px;
+}
+
+.App-header .App-title {
+  float: left;
+  margin-top: 8px;
 }
 
 .App-header img {
   height: 50px;
+}
+
+.App-content {
+  margin-top: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

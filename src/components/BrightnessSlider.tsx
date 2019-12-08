@@ -25,6 +25,7 @@ const BrightnessSlider: React.FC<IBrightnessSliderProps> = ({ brightness, setBri
                 // Update the brightness
                 typeof value === "number" && setBrightness(value)
             }}
+            style={{width: "100%", maxWidth: "18em"}}
         />
     )
 }
