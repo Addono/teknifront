@@ -1,4 +1,7 @@
 import React from 'react'
+
+import './BrightnessSlider.css'
+
 import { Slider } from 'antd'
 
 interface IBrightnessSliderProps {
@@ -25,7 +28,7 @@ const BrightnessSlider: React.FC<IBrightnessSliderProps> = ({ brightness, setBri
                 // Update the brightness
                 typeof value === "number" && setBrightness(value)
             }}
-            style={{width: "100%", maxWidth: "18em"}}
+            className={"brightness-slider"}
         />
     )
 }
