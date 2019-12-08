@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
+
+import '@radial-color-picker/react-color-picker/dist/react-color-picker.umd.min.css'
+import './CircularColorPicker.css'
+
 // @ts-ignore
 import ColorPicker from '@radial-color-picker/react-color-picker'
-import '@radial-color-picker/react-color-picker/dist/react-color-picker.umd.min.css'
 import Color from "../interfaces/Color"
 import { hsl, rgb } from 'color-convert'
 
@@ -33,6 +36,7 @@ const CircularColorPicker: React.FC<ICircularColorPickerProps> = ({ onColorChang
 
     return (
         <ColorPicker
+
             hue={hue}
             onSelect={() => onColorChange(lastSelectedColor)}
             onChange={(iState: IState) => { setLastSelectedColor(colorPickerStateToColor(iState)) }}
