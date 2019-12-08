@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![GitLab pipeline](https://img.shields.io/gitlab/pipeline/ioteknikringen/teknifront?style=for-the-badge)](https://gitlab.com/ioteknikringen/teknifront/builds)
 
 ## Available Scripts
 
