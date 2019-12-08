@@ -10,7 +10,8 @@ interface ITransitionSelectorProps {
 export enum Transitions {
   "fade" = "Fade",
   "sudden" = "Sudden",
-  "thermalCycle" = "Thermal Cycle"
+  "thermalCycle" = "Thermal Cycle",
+  "wipe" = "Wipe"
 }
 
 const TransitionSelector: React.FC<ITransitionSelectorProps> = ({ setTransition, transition }) => (
