@@ -3,6 +3,10 @@
     max-width: 18em;
 }
 
-.brightness-slider .ant-slider-track {
+.brightness-slider .ant-slider-rail {
     background: linear-gradient(to right, #444, white);
+}
+
+.brightness-slider .ant-slider-track {
+    opacity: 0;
 }
