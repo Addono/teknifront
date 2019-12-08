@@ -1,18 +1,16 @@
 import React, { useState } from 'react'
+
 import mqtt, { IClientPublishOptions } from 'mqtt'
 import Color from '../interfaces/Color'
-import CircularColorPicker from "../components/CircularColorPicker"
-import BrightnessSlider from '../components/BrightnessSlider'
-import TransitionSelector from '../components/TransitionSelector'
 import { Spin, Button, notification } from 'antd'
-
-type Message = { transition: string, params: Color }
+import LightController from '../components/LightController'
+import State from '../interfaces/State'
 
 const MQTT_OPTIONS: IClientPublishOptions = { qos: 2, retain: true }
 const MQTT_CHANNEL_PREFIX = "tek/staging/light/1"
 
-const sendStateUpdateMessage = (client: mqtt.MqttClient, message: Message) => (
-    client.publish(`${MQTT_CHANNEL_PREFIX}/state`, JSON.stringify(message), MQTT_OPTIONS)
+const sendStateUpdateMessage = (client: mqtt.MqttClient, state: State) => (
+    client.publish(`${MQTT_CHANNEL_PREFIX}/state`, JSON.stringify(state), MQTT_OPTIONS)
 )
 
 const sendBrightness = (client: mqtt.MqttClient, brightness: number) => (
@@ -32,9 +30,10 @@ const createTimeoutNotification = (client: mqtt.MqttClient) => (
 const ControlPage: React.FC = () => {
     const [client, setClient] = useState<mqtt.MqttClient>()
     const [brightness, setBrightness] = useState<{ brightness: number }>()
-    const [state, setState] = useState<Message>()
+    const [state, setState] = useState<State>()
     const timeoutReference = React.useRef<NodeJS.Timeout>()
 
+    // Connect to the MQTT server
     React.useEffect(() => {
         let client = mqtt.connect('wss://mqtt.eclipse.org:443/mqtt')
 
@@ -49,6 +48,7 @@ const ControlPage: React.FC = () => {
         return () => timeoutReference.current && clearTimeout(timeoutReference.current)
     }, [])
 
+    // Start processing the messages from the MQTT server when the connection completes
     React.useEffect(() => {
         client?.on('message', (topic: string, message: string) => {
             if (topic.endsWith("brightness")) {
@@ -63,6 +63,7 @@ const ControlPage: React.FC = () => {
         })
     }, [client])
 
+    // Show a spinner until we are finished connecting
     if (!client || !state) {
         return <Spin tip={"Connecting..."} size={"large"} />
     }
@@ -77,25 +78,17 @@ const ControlPage: React.FC = () => {
         sendStateUpdateMessage(client, newState) && setState(newState)
     }
 
-    const updateBrightnesss = (brightness: number) => {
+    const updateBrightness = (brightness: number) => {
         sendBrightness(client, brightness) && setBrightness({ brightness })
     }
 
-    return <>
-        <TransitionSelector setTransition={updateTransition} transition={state.transition} />
-        <br />
-        <BrightnessSlider
-            brightness={brightness?.brightness ?? 0}
-            setBrightness={updateBrightnesss}
-        />
-        <br />
-        {state.transition !== "thermalCycle" &&
-            <CircularColorPicker
-                color={state.params ?? { red: 0, blue: 0, green: 0 }}
-                onColorChange={updateColor}
-            />
-        }
-    </>
+    return <LightController
+        brightness={brightness?.brightness}
+        updateBrightness={updateBrightness}
+        state={state}
+        updateColor={updateColor}
+        updateTransition={updateTransition}
+    />
 }
 
 export default ControlPage
