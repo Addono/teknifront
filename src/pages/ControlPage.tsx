@@ -42,6 +42,7 @@ const ControlPage: React.FC = () => {
             client.subscribe(`${MQTT_CHANNEL_PREFIX}/#`)
             setClient(client)
 
+            // Create the retrieve state timeout notification
             timeoutReference.current = setTimeout(() => createTimeoutNotification(client), 1000)
         })
 
@@ -90,7 +91,7 @@ const ControlPage: React.FC = () => {
         <br />
         {state.transition !== "thermalCycle" &&
             <CircularColorPicker
-                color={state?.params ?? { red: 0, blue: 0, green: 0 }}
+                color={state.params ?? { red: 0, blue: 0, green: 0 }}
                 onColorChange={updateColor}
             />
         }
