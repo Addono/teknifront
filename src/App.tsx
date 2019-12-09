@@ -3,7 +3,7 @@ import React from 'react'
 import './App.css'
 
 import ControlPage from './pages/ControlPage'
-import { Layout, Typography } from 'antd'
+import { Layout, Typography, Collapse } from 'antd'
 
 const { Header, Content, Footer } = Layout
 const { Title, Text } = Typography
@@ -51,13 +51,15 @@ const App: React.FC = () => (
     </Content>
 
     <Footer className={"App-footer"}>
-      <Text>Made with ♡ by <a href={"//aknapen.nl"}>Adriaan Knapen</a> and <a href={"//andrespy.gitlab.io/"}>Andrés Prieto Yanes</a></Text>
-      <br />
-      {badges.map(({ href, label, message, color, logo }) => (
-        <a href={href}>
-          <img src={`https://img.shields.io/badge/${label}-${message}-${color}?style=for-the-badge&logo=${logo}`} alt={""} />
-        </a>
-      ))}
+      <Collapse bordered={false} expandIconPosition={"right"}>
+        <Collapse.Panel header={<Text>Made with ♡ by <a href={"//aknapen.nl"}>Adriaan Knapen</a> and <a href={"//andrespy.gitlab.io/"}>Andrés Prieto Yanes</a></Text>} key={1}>
+          {badges.map(({ href, label, message, color, logo }) => (
+            <a href={href}>
+              <img src={`https://img.shields.io/badge/${label}-${message}-${color}?style=for-the-badge&logo=${logo}`} alt={""} />
+            </a>
+          ))}
+        </Collapse.Panel>
+      </Collapse>
     </Footer>
   </Layout>
 )
