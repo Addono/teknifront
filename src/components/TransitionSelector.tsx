@@ -11,7 +11,8 @@ export enum Transitions {
   "fade" = "Fade",
   "sudden" = "Sudden",
   "thermalCycle" = "Thermal Cycle",
-  "wipe" = "Wipe"
+  "wipe" = "Wipe",
+  "christmas" = "Christmas"
 }
 
 const TransitionSelector: React.FC<ITransitionSelectorProps> = ({ setTransition, transition }) => (

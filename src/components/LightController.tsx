@@ -23,7 +23,7 @@ const LightController: React.FunctionComponent<ILightControllerProps> = ({ brigh
             setBrightness={updateBrightness}
         />
         <br />
-        {state.transition !== "thermalCycle" &&
+        {(state.transition !== "thermalCycle" && state.transition !== "christmas") &&
             <CircularColorPicker
                 color={state.params ?? { red: 0, blue: 0, green: 0 }}
                 onColorChange={updateColor}
