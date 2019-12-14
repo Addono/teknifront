@@ -36,11 +36,7 @@ This is the user-facing front-end of the TekniLight project. It can be used to a
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
 
 ### Prerequisites
-What things you need to install the software and how to install them.
-
-```
-Give examples
-```
+You need to have [Yarn](https://yarnpkg.com/en/docs/install) installed to use this repository.
 
 ### Installing
 First we need to install all dependencies, run:
