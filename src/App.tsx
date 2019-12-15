@@ -54,7 +54,7 @@ const App: React.FC = () => (
       <Collapse bordered={false} expandIconPosition={"right"}>
         <Collapse.Panel header={<Text>Made with ♡ by <a href={"//aknapen.nl"}>Adriaan Knapen</a> and <a href={"//andrespy.gitlab.io/"}>Andrés Prieto Yanes</a></Text>} key={1}>
           {badges.map(({ href, label, message, color, logo }) => (
-            <a href={href}>
+            <a href={href} key={href}>
               <img src={`https://img.shields.io/badge/${label}-${message}-${color}?style=for-the-badge&logo=${logo}`} alt={""} />
             </a>
           ))}
