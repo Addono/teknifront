@@ -15,6 +15,10 @@
   margin-top: 8px;
 }
 
+.App-header .App-header-right {
+  float: right;
+}
+
 .App-header img {
   height: 50px;
 }
