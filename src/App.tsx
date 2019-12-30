@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 
 import './App.css'
 
-import ControlPage from './pages/ControlPage'
-import { Layout, Typography, Collapse } from 'antd'
+import { Layout, Typography, Collapse, Spin } from 'antd'
 import ConnectivityStateIndicator from './components/ConnectivityStateIndicator/ConnectivityStateIndicator'
+
+const ControlPage = React.lazy(() => import ('./pages/ControlPage'))
 
 const { Header, Content, Footer } = Layout
 const { Title, Text } = Typography
@@ -52,7 +53,9 @@ const App: React.FC = () => (
     </Header>
 
     <Content className="App-content">
-      <ControlPage />
+      <Suspense fallback={<Spin tip={"Loading..."} size={"large"} />}>
+        <ControlPage />
+      </Suspense>
     </Content>
 
     <Footer className={"App-footer"}>
