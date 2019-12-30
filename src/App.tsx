@@ -4,6 +4,7 @@ import './App.css'
 
 import ControlPage from './pages/ControlPage'
 import { Layout, Typography, Collapse } from 'antd'
+import ConnectivityStateIndicator from './components/ConnectivityStateIndicator/ConnectivityStateIndicator'
 
 const { Header, Content, Footer } = Layout
 const { Title, Text } = Typography
@@ -44,6 +45,10 @@ const App: React.FC = () => (
     <Header className="App-header">
       <img src={require('./logo.png')} alt={""} className={"App-logo"} />
       <Title className={"App-title"}>Teknifront</Title>
+
+      <div className="App-header-right">
+        <ConnectivityStateIndicator />
+      </div>
     </Header>
 
     <Content className="App-content">
