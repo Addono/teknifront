@@ -3,9 +3,9 @@ import React, { Suspense } from 'react'
 import './App.css'
 
 import { Layout, Typography, Collapse, Spin } from 'antd'
-import ConnectivityStateIndicator from './components/ConnectivityStateIndicator/ConnectivityStateIndicator'
 
-const ControlPage = React.lazy(() => import ('./pages/ControlPage'))
+const ConnectivityStateIndicator = React.lazy(() => import('./components/ConnectivityStateIndicator/ConnectivityStateIndicator'))
+const ControlPage = React.lazy(() => import('./pages/ControlPage'))
 
 const { Header, Content, Footer } = Layout
 const { Title, Text } = Typography
@@ -48,7 +48,9 @@ const App: React.FC = () => (
       <Title className={"App-title"}>Teknifront</Title>
 
       <div className="App-header-right">
-        <ConnectivityStateIndicator />
+        <Suspense fallback={null}>
+          <ConnectivityStateIndicator />
+        </Suspense>
       </div>
     </Header>
 
