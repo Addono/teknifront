@@ -1,0 +1,13 @@
+image: node:current
+
+before_script:
+  - yarn install
+
+test:
+  stage: test
+  script:
+    - yarn test
+  cache:
+    paths:
+    - node_modules/
+    - .yarn
