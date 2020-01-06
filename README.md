@@ -84,7 +84,8 @@ Deploy the static files to a CDN. We would recommend using continious deployment
 ## ⛏️ Built Using <a name = "built_using"></a>
 - [React](https://reactjs.org/) - Frontend Framework
 - [MQTT](https://mqtt.org/) - Backend Communication Protocol
-- [Zeit Now](https://zeit.co/now) - CDN and Continious Deployment
+- [Gitlab](https://gitlab.com) - VCS and Continuous Integration
+- [Zeit Now](https://zeit.co/now) - CDN and Continuous Deployment
 
 ## ✍️ Authors <a name = "authors"></a>
 - [Adriaan Knapen](https://aknapen.nl) [![Addono@Gitlab](https://img.shields.io/badge/Gitlab-@Addono-orange?style=for-the-badge&logo=gitlab)](https://gitlab.com/Addono) [![Addono@Github](https://img.shields.io/badge/Github-@Addono-black?style=for-the-badge&logo=github)](https://github.com/Addono)
