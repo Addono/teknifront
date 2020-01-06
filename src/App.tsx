@@ -45,7 +45,7 @@ const App: React.FC = () => (
   <Layout className="App">
     <Header className="App-header">
       <img src={require('./logo.png')} alt={""} className={"App-logo"} />
-      <Title className={"App-title"}>Teknifront</Title>
+      <Title className={"App-title"}>TekniFront</Title>
 
       <div className="App-header-right">
         <Suspense fallback={null}>
