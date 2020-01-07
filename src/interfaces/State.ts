@@ -1,8 +1,8 @@
-import Color from './Color';
+import Color from './Color'
 
-interface State { 
-    transition: string, 
-    params: Color 
+interface State {
+  transition: string
+  params: Color
 }
 
 export default State

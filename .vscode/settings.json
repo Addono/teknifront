@@ -1,4 +1,5 @@
 {
     "typescript.tsdk": "node_modules/typescript/lib",
-    "typescript.format.semicolons": "remove"
+    "typescript.format.semicolons": "remove",
+    "editor.tabSize": 2
 }
