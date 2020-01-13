@@ -11,3 +11,6 @@ test:
     paths:
     - node_modules/
     - .yarn
+  only:
+    - merge_requests
+    - pushes
