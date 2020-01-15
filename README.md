@@ -16,7 +16,7 @@
 
 ---
 
-<p align="center"> The front-end of the TekniLight project.
+<p align="center"> The frontend of the TekniLight project.
     <br> 
 </p>
 
@@ -30,7 +30,7 @@
 - [Acknowledgments](#acknowledgement)
 
 ## 🧐 About <a name = "about"></a>
-This is the front-end of the TekniIoT project. It can be used to announce state updates of the lights, which will be picked up by the [TekniBridge](https://gitlab.com/ioteknikringen/teknibridge).
+This is the frontend of the TekniIoT project. It can be used to announce state updates of the lights, which will be picked up by the [TekniBridge](https://gitlab.com/ioteknikringen/teknibridge).
 
 ![screenshot](./docs/img/screenshot.png)
 
