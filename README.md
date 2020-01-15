@@ -23,6 +23,7 @@
 ## 📝 Table of Contents
 - [About](#about)
 - [Getting Started](#getting_started)
+- [Running the Tests](#tests)
 - [Deployment](#deployment)
 - [Usage](#usage)
 - [Built Using](#built_using)
@@ -55,7 +56,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will automatically reload whenever you save any file and display potential compilation errors.
 
 
-## 🔧 Running the tests <a name = "tests"></a>
+## 🔧 Running the Tests <a name = "tests"></a>
 After setting up the development environment, tests can be invoked using:
 ```bash
 yarn test
