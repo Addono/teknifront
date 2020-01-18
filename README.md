@@ -15,6 +15,9 @@
   <a href="https://codecov.io/gl/tekniot/teknifront">
     <img alt="Code Coverage Badge" src="https://img.shields.io/codecov/c/gl/tekniot/teknifront?style=for-the-badge" />
   </a>
+  <a href="https://www.repostatus.org/#active">
+    <img alt="Project Status: Active" src="https://img.shields.io/badge/Project%20Status-Active-brightgreen?style=for-the-badge" />
+  </a>
 </div>
 
 ---
