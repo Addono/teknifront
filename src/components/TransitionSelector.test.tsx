@@ -8,7 +8,7 @@ afterEach(cleanup)
 describe('<TransitionSelector />', () => {
   it("Renders the 'fade' transition button", () => {
     // Create an insteance of TransitionSelector
-    const { queryByLabelText, getByLabelText } = render(
+    const { queryByLabelText } = render(
       <TransitionSelector transition={Transitions.fade} setTransition={jest.fn()} />
     )
 
@@ -17,7 +17,7 @@ describe('<TransitionSelector />', () => {
 
   it("Renders the 'sudden' transition button", () => {
     // Create an insteance of TransitionSelector
-    const { queryByLabelText, getByLabelText } = render(
+    const { queryByLabelText } = render(
       <TransitionSelector transition={Transitions.fade} setTransition={jest.fn()} />
     )
 
