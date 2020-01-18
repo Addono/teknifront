@@ -60,7 +60,8 @@
     "collectCoverageFrom": [
       "src/**/*.js",
       "src/**/*.ts",
-      "src/**/*.tsx"
+      "src/**/*.tsx",
+      "!src/serviceWorker.ts"
     ]
   },
   "prettier": {
