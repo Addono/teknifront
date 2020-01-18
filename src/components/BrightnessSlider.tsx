@@ -16,7 +16,7 @@ const BrightnessSlider: React.FC<IBrightnessSliderProps> = ({ brightness, setBri
 
   return (
     <Slider
-      step={0.0001}
+      step={0.01}
       tipFormatter={value => `${Math.round(value * 100)}%`}
       max={1}
       value={overwrittenBrightness ?? brightness}
