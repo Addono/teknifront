@@ -20,7 +20,8 @@ test:
       - coverage
   only:
     - merge_requests
-    - pushes
+    - branches
+    - tags
 
 coverage:
   stage: coverage
@@ -30,5 +31,6 @@ coverage:
   dependencies:
     - test
   only:
-    - pushes
+    - branches
+    - tags
 
