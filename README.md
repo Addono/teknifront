@@ -12,6 +12,9 @@
   <a href="./LICENCE">
     <img alt="License" src="https://img.shields.io/badge/Licence-MIT-green?style=for-the-badge" />
   </a>
+  <a href="https://codecov.io/gl/tekniot/teknifront">
+    <img alt="Code Coverage Badge" src="https://img.shields.io/codecov/c/gl/tekniot/teknifront?style=for-the-badge" />
+  </a>
 </div>
 
 ---
