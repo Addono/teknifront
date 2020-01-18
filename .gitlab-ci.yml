@@ -2,18 +2,33 @@ image: node:current
 
 stages:
  - test
-
-before_script:
-  - yarn install --frozen-lockfile
+ - coverage
 
 test:
   stage: test
   script:
+    # Install all dependencies
+    - yarn install --frozen-lockfile
+    # Run the tests
     - yarn test
   cache:
     paths:
     - node_modules/
     - .yarn
+  artifacts:
+    paths:
+      - coverage
   only:
     - merge_requests
     - pushes
+
+coverage:
+  stage: coverage
+  script:
+    # Upload code coverage
+    - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
+  dependencies:
+    - test
+  only:
+    - pushes
+
