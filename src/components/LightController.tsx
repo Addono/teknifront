@@ -1,6 +1,6 @@
 import React from 'react'
 
-import TransitionSelector from './TransitionSelector'
+import TransitionSelector, { Transitions } from './TransitionSelector'
 import BrightnessSlider from './BrightnessSlider'
 import CircularColorPicker from './CircularColorPicker'
 import Color from '../interfaces/Color'
@@ -20,19 +20,25 @@ const LightController: React.FC<ILightControllerProps> = ({
   state,
   updateTransition,
   updateColor,
-}) => (
-  <>
-    <TransitionSelector setTransition={updateTransition} transition={state.transition} />
-    <br />
-    <BrightnessSlider brightness={brightness ?? 0} setBrightness={updateBrightness} />
-    <br />
-    {state.transition !== 'thermalCycle' && state.transition !== 'christmas' && (
-      <CircularColorPicker
-        color={state.params ?? { red: 0, blue: 0, green: 0 }}
-        onColorChange={updateColor}
-      />
-    )}
-  </>
-)
+}) => {
+  // Get the current transition state either as one of the known Transitions, or if it is unknown as null
+  const transition: Transitions | null =
+    state.transition in Transitions ? Transitions[state.transition as keyof typeof Transitions] : null
+
+  return (
+    <>
+      <TransitionSelector setTransition={updateTransition} transition={state.transition} />
+      <br />
+      <BrightnessSlider brightness={brightness ?? 0} setBrightness={updateBrightness} />
+      <br />
+      {transition && !(transition in [Transitions.thermal_cycle, Transitions.christmas]) && (
+        <CircularColorPicker
+          color={state.params ?? { red: 0, blue: 0, green: 0 }}
+          onColorChange={updateColor}
+        />
+      )}
+    </>
+  )
+}
 
 export default LightController
