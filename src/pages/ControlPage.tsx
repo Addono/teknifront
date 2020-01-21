@@ -45,7 +45,7 @@ const ControlPage: React.FC = () => {
 
   // Connect to the MQTT server
   React.useEffect(() => {
-    let client = mqtt.connect('wss://mqtt.eclipse.org:443/mqtt')
+    let client = mqtt.connect('wss://test.mosquitto.org:8081')
 
     client.on('connect', () => {
       client.subscribe(`${MQTT_CHANNEL_PREFIX}/#`)
