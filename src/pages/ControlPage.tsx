@@ -45,7 +45,9 @@ const ControlPage: React.FC = () => {
 
   // Connect to the MQTT server
   React.useEffect(() => {
-    let client = mqtt.connect('wss://test.mosquitto.org:8081')
+    let client = mqtt.connect('wss://mqtt.flespi.io:443', {
+      username: 'eoBHHV6b4Ck87Qy5UToKDGPlIs5Nn7uplTWQCRRwj1sgHObpxoX1SDcoT5140jk9',
+    })
 
     client.on('connect', () => {
       client.subscribe(`${MQTT_CHANNEL_PREFIX}/#`)
