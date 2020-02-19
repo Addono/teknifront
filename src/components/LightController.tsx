@@ -31,7 +31,7 @@ const LightController: React.FC<ILightControllerProps> = ({
       <br />
       <BrightnessSlider brightness={brightness ?? 0} setBrightness={updateBrightness} />
       <br />
-      {transition && !(transition in [Transitions.thermal_cycle, Transitions.christmas]) && (
+      {transition && ![Transitions.thermal_cycle, Transitions.christmas].includes(transition) && (
         <CircularColorPicker
           color={state.params ?? { red: 0, blue: 0, green: 0 }}
           onColorChange={updateColor}
