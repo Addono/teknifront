@@ -6,8 +6,8 @@
 
 .App-header .App-logo {
   float: left;
-  margin: 8px 16px 8px 0;
-  height: 48px;
+  margin: 5px 5px 5px 0;
+  height: 80%;
 }
 
 .App-header .App-title {
@@ -17,10 +17,6 @@
 
 .App-header .App-header-right {
   float: right;
-}
-
-.App-header img {
-  height: 50px;
 }
 
 .App-content {
