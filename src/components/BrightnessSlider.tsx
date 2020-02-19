@@ -9,7 +9,7 @@ interface IBrightnessSliderProps {
   setBrightness: (brightness: number) => void
 }
 
-const BrightnessSlider: React.FC<IBrightnessSliderProps> = ({ brightness, setBrightness }) => {
+const BrightnessSlider = ({ brightness, setBrightness }: IBrightnessSliderProps) => {
   // When the user is moving the slider, we overwrite the brightness using this state variable until
   // the user releases the handle. It will be null when the value is not overwritten.
   const [overwrittenBrightness, setOverwrittenBrightness] = React.useState<number | null>(null)

@@ -37,7 +37,7 @@ const createTimeoutNotification = (client: mqtt.MqttClient) =>
     ),
   })
 
-const ControlPage: React.FC = () => {
+const ControlPage = () => {
   const [client, setClient] = useState<mqtt.MqttClient>()
   const [brightness, setBrightness] = useState<{ brightness: number }>()
   const [state, setState] = useState<State>()

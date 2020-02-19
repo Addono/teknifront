@@ -14,13 +14,13 @@ interface ILightControllerProps {
   updateTransition: (transition: string) => void
 }
 
-const LightController: React.FC<ILightControllerProps> = ({
+const LightController = ({
   brightness,
   updateBrightness,
   state,
   updateTransition,
   updateColor,
-}) => {
+}: ILightControllerProps) => {
   // Get the current transition state either as one of the known Transitions, or if it is unknown as null
   const transition: Transitions | null =
     state.transition in Transitions ? Transitions[state.transition as keyof typeof Transitions] : null

@@ -43,7 +43,7 @@ const badges = [
   },
 ]
 
-const App: React.FC = () => (
+const App = () => (
   <Layout className="App">
     <Header className="App-header">
       <img src={require('./logo.png')} alt={''} className={'App-logo'} />

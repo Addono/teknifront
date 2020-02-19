@@ -29,7 +29,7 @@ const colorToColorPickerState = ({ red, green, blue }: Color): IState => {
   return { hue, saturation: saturation, luminosity: luminosity }
 }
 
-const CircularColorPicker: React.FC<ICircularColorPickerProps> = ({ onColorChange, color }) => {
+const CircularColorPicker = ({ onColorChange, color }: ICircularColorPickerProps) => {
   const [lastSelectedColor, setLastSelectedColor] = useState<Color>(color)
 
   const { hue } = colorToColorPickerState(color)

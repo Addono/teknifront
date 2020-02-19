@@ -15,7 +15,7 @@ export enum Transitions {
   'christmas' = 'Christmas',
 }
 
-const TransitionSelector: React.FC<ITransitionSelectorProps> = ({ setTransition, transition }) => (
+const TransitionSelector = ({ setTransition, transition }: ITransitionSelectorProps) => (
   <Radio.Group value={transition} onChange={({ target: { value } }) => setTransition(value)}>
     {Object.entries(Transitions).map(([id, name]) => (
       <Radio.Button value={id} key={id}>
