@@ -18,6 +18,12 @@
   <a href="https://www.repostatus.org/#active">
     <img alt="Project Status: Active" src="https://img.shields.io/badge/Project%20Status-Active-brightgreen?style=for-the-badge" />
   </a>
+  
+  <br />
+  
+  <a href="https://depfu.com/gitlab/tekniot/teknifront?project_id=10536">
+    <img alt="Dependencies status" src="https://badges.depfu.com/badges/3e6ff24d84bce6837fa6fc141088c935/overview.svg" />
+  </a>
 </div>
 
 ---
