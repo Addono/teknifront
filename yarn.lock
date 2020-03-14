@@ -9,12 +9,12 @@
   dependencies:
     tinycolor2 "^1.4.1"
 
-"@ant-design/dark-theme@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@ant-design/dark-theme/-/dark-theme-1.0.3.tgz#f06b4d8c62eba547a80661b68400c181c991392b"
-  integrity sha512-jd7y7GSbhta7dUsoAIqdBSAzFN6tx6mZaps2r6h+NhYoifOo7TGzagVYkjPR/27s6FK2vwzBhLBU1XPaVicfVw==
+"@ant-design/dark-theme@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@ant-design/dark-theme/-/dark-theme-2.0.1.tgz#10e367764a58b460b739225a4b65592be6804a42"
+  integrity sha512-quChuneU2mqkTtb5shy2fvXhO9zXLi8L+yIEOpju6Cgr8BtCxGJAo61Ty+bsHCLKaSrKlS8Z8i4y8iJ0rRyjVA==
   dependencies:
-    "@ant-design/colors" "^3.1.0"
+    "@types/node" "^13.7.7"
 
 "@ant-design/icons-svg@^4.0.0":
   version "4.0.0"
@@ -1601,6 +1601,11 @@
   version "13.7.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-13.7.1.tgz#238eb34a66431b71d2aaddeaa7db166f25971a0d"
   integrity sha512-Zq8gcQGmn4txQEJeiXo/KiLpon8TzAl0kmKH4zdWctPj05nWwp1ClMdAVEloqrQKfaC48PNLdgN/aVaLqUrluA==
+
+"@types/node@^13.7.7":
+  version "13.9.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-13.9.1.tgz#96f606f8cd67fb018847d9b61e93997dabdefc72"
+  integrity sha512-E6M6N0blf/jiZx8Q3nb0vNaswQeEyn0XlupO+xN6DtJ6r6IT4nXrTry7zhIfYvFCl3/8Cu6WIysmUBKiqV0bqQ==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
