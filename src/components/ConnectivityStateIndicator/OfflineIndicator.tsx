@@ -1,10 +1,11 @@
 import React from 'react'
 
-import { Tooltip, Icon } from 'antd'
+import { Tooltip } from 'antd'
+import { DisconnectOutlined } from '@ant-design/icons'
 
 const OfflineIndicator = () => (
   <Tooltip title="You appear to be offline">
-    <Icon type="disconnect" style={{ color: 'orangered' }} />
+    <DisconnectOutlined style={{ color: 'orangered' }} />
   </Tooltip>
 )
 
