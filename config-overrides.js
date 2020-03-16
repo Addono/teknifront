@@ -1,14 +1,14 @@
-const darkTheme = require('@ant-design/dark-theme')
 const { override, fixBabelImports, addLessLoader } = require('customize-cra')
+const darkThemeVars = require('antd/dist/dark-theme')
 
 module.exports = override(
-    fixBabelImports('import', {
-        libraryName: 'antd',
-        libraryDirectory: 'es',
-        style: true,
-    }),
-    addLessLoader({
-        modifyVars: darkTheme.default,
-        javascriptEnabled: true,
-    }),
+  fixBabelImports('import', {
+    libraryName: 'antd',
+    libraryDirectory: 'es',
+    style: true,
+  }),
+  addLessLoader({
+    javascriptEnabled: true,
+    modifyVars: darkThemeVars,
+  })
 )

@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@ant-design/dark-theme": "^2.0.1",
     "@ant-design/icons": "^4.0.2",
     "@radial-color-picker/react-color-picker": "^1.0.0",
     "antd": "^4.0.2",
