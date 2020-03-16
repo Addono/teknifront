@@ -16,7 +16,11 @@ export enum Transitions {
 }
 
 const TransitionSelector = ({ setTransition, transition }: ITransitionSelectorProps) => (
-  <Radio.Group value={transition} onChange={({ target: { value } }) => setTransition(value)}>
+  <Radio.Group
+    value={transition}
+    onChange={({ target: { value } }) => setTransition(value)}
+    style={{ whiteSpace: 'unset' }}
+  >
     {Object.entries(Transitions).map(([id, name]) => (
       <Radio.Button value={id} key={id}>
         {name}
