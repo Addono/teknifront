@@ -9,6 +9,9 @@ module.exports = override(
   }),
   addLessLoader({
     javascriptEnabled: true,
-    modifyVars: darkThemeVars,
+    modifyVars: {
+      ...darkThemeVars,
+      '@body-background': '#2A2A34',
+    },
   })
 )
