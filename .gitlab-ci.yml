@@ -15,7 +15,9 @@ test:
     # Run the tests
     - yarn test
   cache:
-    key: ${CI_COMMIT_REF_SLUG}
+    key: 
+      files:
+        - yarn.lock
     paths:
       - .npm
       - node_modules
