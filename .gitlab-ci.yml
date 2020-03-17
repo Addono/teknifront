@@ -4,6 +4,9 @@ stages:
  - test
  - coverage
 
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+
 test:
   stage: test
   script:
@@ -12,8 +15,10 @@ test:
     # Run the tests
     - yarn test
   cache:
+    key: ${CI_COMMIT_REF_SLUG}
     paths:
-    - node_modules/
+      - .npm
+      - node_modules
   artifacts:
     paths:
       - coverage
