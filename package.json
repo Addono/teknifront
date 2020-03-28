@@ -12,10 +12,10 @@
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
     "mqtt": "^3.0.0",
-    "react": "^16.13.0",
+    "react": "^16.13.1",
     "react-app-rewired": "^2.1.5",
     "react-detect-offline": "^2.4.0",
-    "react-dom": "^16.13.0",
+    "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1",
     "typescript": "^3.8.3"
   },
