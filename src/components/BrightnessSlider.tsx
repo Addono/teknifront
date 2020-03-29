@@ -17,11 +17,11 @@ const BrightnessSlider = ({ brightness, setBrightness }: IBrightnessSliderProps)
   return (
     <Slider
       step={0.01}
-      tipFormatter={value => `${Math.round(value * 100)}%`}
+      tipFormatter={(value) => `${Math.round(value * 100)}%`}
       max={1}
       value={overwrittenBrightness ?? brightness}
-      onChange={value => typeof value === 'number' && setOverwrittenBrightness(value)}
-      onAfterChange={value => {
+      onChange={(value) => typeof value === 'number' && setOverwrittenBrightness(value)}
+      onAfterChange={(value) => {
         // Stop overwriting the brightness
         setOverwrittenBrightness(null)
 
