@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import '@radial-color-picker/react-color-picker/dist/react-color-picker.umd.min.css'
+import '@radial-color-picker/react-color-picker/dist/react-color-picker.min.css'
 import './CircularColorPicker.css'
 
 // @ts-ignore

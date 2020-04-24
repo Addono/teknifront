@@ -1500,23 +1500,23 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@radial-color-picker/color-wheel@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@radial-color-picker/color-wheel/-/color-wheel-1.0.0.tgz#c1dd93af28b119c0e8bbb4fa341bb17756735842"
-  integrity sha512-BSo/DdZrLi71WhR7tGckV9teInGACtNtgj4Xqp4S6Q+Tn5fQNHoi963pthRChN8V8vfT17Tvk3K2V2KwtqYo9w==
+"@radial-color-picker/color-wheel@2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@radial-color-picker/color-wheel/-/color-wheel-2.2.1.tgz#11ec7803744c4a4b6af465708e20bbd4727e6ee1"
+  integrity sha512-J/fRIIwgsl3WLIZmCbs9IO31oj7pF32wpuWxlO5nZVJz1YsBMwBSg75hVPBVnJrijCQCss7xpgT+uSuSO9Xmrw==
 
-"@radial-color-picker/react-color-picker@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@radial-color-picker/react-color-picker/-/react-color-picker-1.0.0.tgz#b3313c7fddf402356ab480f4103a0c8660016799"
-  integrity sha512-vgtk+GrL8CzhIXBrwRC+yCGYT8aNlSiF3bFE5FaHDjqOZlYXZDqYlNVS1rBHSum2+yis66Kdywlo1yhjS4gxgA==
+"@radial-color-picker/react-color-picker@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@radial-color-picker/react-color-picker/-/react-color-picker-2.0.1.tgz#5bbd607ae8099732e236ef7aec72083f48f7def8"
+  integrity sha512-Sc3vm5vHYIpXwgSn/DyY6nhPMqbhfgQrJbBTzsA2p14k1kZY76cSGzr+mpRGWZs89N2+AeJbUn5FFnlaZyl9eg==
   dependencies:
-    "@radial-color-picker/color-wheel" "1.0.0"
-    "@radial-color-picker/rotator" "1.0.1"
+    "@radial-color-picker/color-wheel" "2.2.1"
+    "@radial-color-picker/rotator" "2.1.1"
 
-"@radial-color-picker/rotator@1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@radial-color-picker/rotator/-/rotator-1.0.1.tgz#35293286336a74744054edd6d1ea98a8476a731d"
-  integrity sha512-GkZcZnD5nidttFsNv3ZzTkVuAxq54Ls4QwqciU6NUyxeIDujBefQDmzmPZXRYG6cxPwjbKZ5EDqC4QONJmnp/g==
+"@radial-color-picker/rotator@2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@radial-color-picker/rotator/-/rotator-2.1.1.tgz#f9388ded9c4d1a98a9ad7279eb7d220fc1eed7df"
+  integrity sha512-dmitBfAUzdZwbmi2+GA9aOyq9OqBQSsbyrRNOw+uqfw5W9goLHNOxwBYsfbX10c/3IoS9gErGnpNnIwTYSU5mw==
 
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
