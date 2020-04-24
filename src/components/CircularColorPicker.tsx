@@ -8,38 +8,32 @@ import ColorPicker from '@radial-color-picker/react-color-picker'
 import Color from '../interfaces/Color'
 import { hsl, rgb } from 'color-convert'
 
-interface IState {
-  hue: number
-  saturation: number
-  luminosity: number
-}
-
 interface ICircularColorPickerProps {
   onColorChange: (color: Color) => void
   color: Color
 }
 
-const colorPickerStateToColor = ({ hue, saturation, luminosity }: IState): Color => {
-  const [red, green, blue] = hsl.rgb([hue, saturation, luminosity])
+const hueToColor = (hue: number): Color => {
+  const [red, green, blue] = hsl.rgb([hue, 100, 50])
   return { red: red / 255, green: green / 255, blue: blue / 255 }
 }
 
-const colorToColorPickerState = ({ red, green, blue }: Color): IState => {
-  const [hue, saturation, luminosity] = rgb.hsl([red * 255, green * 255, blue * 255])
-  return { hue, saturation: saturation, luminosity: luminosity }
+const colorToHue = ({ red, green, blue }: Color): number => {
+  const [hue] = rgb.hsl([red * 255, green * 255, blue * 255])
+  return hue
 }
 
 const CircularColorPicker = ({ onColorChange, color }: ICircularColorPickerProps) => {
   const [lastSelectedColor, setLastSelectedColor] = useState<Color>(color)
 
-  const { hue } = colorToColorPickerState(color)
+  const hue = colorToHue(color)
 
   return (
     <ColorPicker
       hue={hue}
-      onSelect={() => onColorChange(lastSelectedColor)}
-      onChange={(iState: IState) => {
-        setLastSelectedColor(colorPickerStateToColor(iState))
+      onChange={() => onColorChange(lastSelectedColor)}
+      onInput={(hue: number) => {
+        setLastSelectedColor(hueToColor(hue))
       }}
     />
   )

@@ -1,3 +1,3 @@
-.color-picker .palette:before {
+.rcp .rcp__palette::before {
   background-color: #30303c;
 }
