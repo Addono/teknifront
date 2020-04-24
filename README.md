@@ -111,7 +111,7 @@ Deploy the static files to a CDN. We would recommend using continious deployment
 - [React](https://reactjs.org/) - Frontend Framework
 - [MQTT](https://mqtt.org/) - Backend Communication Protocol
 - [Gitlab](https://gitlab.com) - VCS and Continuous Integration
-- [Zeit Now](https://zeit.co/now) - CDN and Continuous Deployment
+- [Vercel](https://vercel.com) - CDN and Continuous Deployment
 
 ## ✍️ Authors <a name = "authors"></a>
 
