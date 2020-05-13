@@ -35,11 +35,11 @@ const badges = [
     logo: 'typescript',
   },
   {
-    href: '//zeit.now',
+    href: '//vercel.com',
     label: 'Hosted on',
-    message: 'ZEIT Now',
+    message: 'Vercel',
     color: 'darkgrey',
-    logo: 'zeit',
+    logo: 'vercel',
   },
 ]
 
