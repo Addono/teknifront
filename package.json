@@ -11,7 +11,7 @@
     "customize-cra": "^1.0.0",
     "less": "^3.11.3",
     "less-loader": "^5.0.0",
-    "mqtt": "^4.1.0",
+    "mqtt": "^4.2.0",
     "react": "^16.13.1",
     "react-app-rewired": "^2.1.6",
     "react-detect-offline": "^2.4.0",
