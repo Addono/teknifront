@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import mqtt, { IClientPublishOptions } from 'mqtt'
+import { IClientPublishOptions, connect, MqttClient } from 'mqtt'
 import Color from '../interfaces/Color'
 import { Spin, Button, notification } from 'antd'
 import LightController from '../components/LightController'
@@ -9,13 +9,13 @@ import State from '../interfaces/State'
 const MQTT_OPTIONS: IClientPublishOptions = { qos: 2, retain: true }
 const MQTT_CHANNEL_PREFIX = 'tek/staging/light/1'
 
-const sendStateUpdateMessage = (client: mqtt.MqttClient, state: State) =>
+const sendStateUpdateMessage = (client: MqttClient, state: State) =>
   client.publish(`${MQTT_CHANNEL_PREFIX}/state`, JSON.stringify(state), MQTT_OPTIONS)
 
-const sendBrightness = (client: mqtt.MqttClient, brightness: number) =>
+const sendBrightness = (client: MqttClient, brightness: number) =>
   client.publish(`${MQTT_CHANNEL_PREFIX}/brightness`, JSON.stringify({ brightness }), MQTT_OPTIONS)
 
-const createTimeoutNotification = (client: mqtt.MqttClient) =>
+const createTimeoutNotification = (client: MqttClient) =>
   notification.open({
     message: 'Hmmm 🤔',
     description: "We couldn't find any previous configuration for this light.",
@@ -38,14 +38,14 @@ const createTimeoutNotification = (client: mqtt.MqttClient) =>
   })
 
 const ControlPage = () => {
-  const [client, setClient] = useState<mqtt.MqttClient>()
+  const [client, setClient] = useState<MqttClient>()
   const [brightness, setBrightness] = useState<{ brightness: number }>()
   const [state, setState] = useState<State>()
   const timeoutReference = React.useRef<NodeJS.Timeout>()
 
   // Connect to the MQTT server
   React.useEffect(() => {
-    let client = mqtt.connect('wss://mqtt.flespi.io:443', {
+    let client = connect('wss://mqtt.flespi.io:443', {
       username: 'tfDgEAF5LmNkImKnaz2eTTjjs6NPWgMglfkPENKdZmnvyXJxlBB2kL9DFMgsTTw2',
     })
 
