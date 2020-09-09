@@ -46,7 +46,7 @@ const ControlPage = () => {
   // Connect to the MQTT server
   React.useEffect(() => {
     let client = mqtt.connect('wss://mqtt.flespi.io:443', {
-      username: 'eoBHHV6b4Ck87Qy5UToKDGPlIs5Nn7uplTWQCRRwj1sgHObpxoX1SDcoT5140jk9',
+      username: 'tfDgEAF5LmNkImKnaz2eTTjjs6NPWgMglfkPENKdZmnvyXJxlBB2kL9DFMgsTTw2',
     })
 
     client.on('connect', () => {
