@@ -16,7 +16,7 @@
     "react-app-rewired": "^2.1.6",
     "react-detect-offline": "^2.4.0",
     "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.1",
+    "react-scripts": "^3.4.3",
     "typescript": "^4.0.2"
   },
   "scripts": {
