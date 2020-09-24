@@ -4,8 +4,8 @@ import './App.css'
 
 import { Layout, Typography, Collapse, Spin } from 'antd'
 
-const ConnectivityStateIndicator = React.lazy(() =>
-  import('./components/ConnectivityStateIndicator/ConnectivityStateIndicator')
+const ConnectivityStateIndicator = React.lazy(
+  () => import('./components/ConnectivityStateIndicator/ConnectivityStateIndicator')
 )
 const ControlPage = React.lazy(() => import('./pages/ControlPage'))
 
@@ -14,7 +14,7 @@ const { Title, Text } = Typography
 
 const badges = [
   {
-    href: '//gitlab.com/ioteknikringen/teknifront',
+    href: '//gitlab.com/tekniot/teknifront',
     label: 'Gitlab',
     message: 'MIT',
     color: 'orange',

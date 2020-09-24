@@ -1,13 +1,13 @@
 <div align="center">
 <p align="center">
-  <a href="https://gitlab.com/ioteknikringen/teknifront" rel="noopener">
+  <a href="https://gitlab.com/tekniot/teknifront" rel="noopener">
     <img width=200px height=200px src="./src/logo.png" alt="Project logo">
   </a>
 </p>
 
 <h3 align="center">TekniFront</h3>
-  <a href="https://gitlab.com/ioteknikringen/teknifront/builds">
-  <img alt="GitLab pipeline" src="https://img.shields.io/gitlab/pipeline/ioteknikringen/teknifront?style=for-the-badge" />
+  <a href="https://gitlab.com/tekniot/teknifront/builds">
+  <img alt="GitLab pipeline" src="https://img.shields.io/gitlab/pipeline/tekniot/teknifront?style=for-the-badge" />
   </a>
   <a href="./LICENCE">
     <img alt="License" src="https://img.shields.io/badge/Licence-MIT-green?style=for-the-badge" />
