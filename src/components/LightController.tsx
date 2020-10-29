@@ -1,7 +1,7 @@
 import React from 'react'
 
 import TransitionSelector, { Transitions } from './TransitionSelector'
-import BrightnessSlider from './BrightnessSlider'
+import BrightnessSelector from './BrightnessSelector'
 import CircularColorPicker from './CircularColorPicker'
 import Color from '../interfaces/Color'
 import State from '../interfaces/State'
@@ -29,7 +29,7 @@ const LightController = ({
     <>
       <TransitionSelector setTransition={updateTransition} transition={state.transition} />
       <br />
-      <BrightnessSlider brightness={brightness ?? 0} setBrightness={updateBrightness} />
+      <BrightnessSelector brightness={brightness ?? 0} setBrightness={updateBrightness} />
       <br />
       {transition && ![Transitions.thermal_cycle, Transitions.christmas].includes(transition) && (
         <CircularColorPicker
