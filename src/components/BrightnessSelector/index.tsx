@@ -1,30 +1,13 @@
 import React from 'react'
 
-import { Button, Col, Row } from 'antd'
+import { Col, Row } from 'antd'
 
 import BrightnessSlider from './BrightnessSlider'
+import BrightnessButton from './BrightnessButton'
 
 interface IBrightnessSelectorProps {
   brightness: number
   setBrightness: (brightness: number) => void
-}
-
-const BrightnessButton = ({
-  value,
-  children,
-  brightness,
-  setBrightness,
-}: IBrightnessSelectorProps & {
-  value: number
-  children: React.ReactNode
-}) => {
-  const highlightButton: boolean = brightness === value
-
-  return (
-    <Button onClick={() => setBrightness(value)} type={highlightButton ? 'primary' : 'default'} ghost>
-      {children}
-    </Button>
-  )
 }
 
 const BrightnessSelector = ({ brightness, setBrightness }: IBrightnessSelectorProps) => {
