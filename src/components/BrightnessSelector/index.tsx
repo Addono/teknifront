@@ -12,18 +12,26 @@ interface IBrightnessSelectorProps {
 const BrightnessButton = ({
   value,
   children,
+  brightness,
   setBrightness,
-}: {
+}: IBrightnessSelectorProps & {
   value: number
   children: React.ReactNode
-  setBrightness: (brightness: number) => void
-}) => <Button onClick={() => setBrightness(value)}>{children}</Button>
+}) => {
+  const highlightButton: boolean = brightness === value
+
+  return (
+    <Button onClick={() => setBrightness(value)} type={highlightButton ? 'primary' : 'default'} ghost>
+      {children}
+    </Button>
+  )
+}
 
 const BrightnessSelector = ({ brightness, setBrightness }: IBrightnessSelectorProps) => {
   return (
     <Row style={{ width: '100%' }}>
       <Col flex="inherit">
-        <BrightnessButton setBrightness={setBrightness} value={0}>
+        <BrightnessButton setBrightness={setBrightness} brightness={brightness} value={0}>
           Off
         </BrightnessButton>
       </Col>
@@ -31,7 +39,7 @@ const BrightnessSelector = ({ brightness, setBrightness }: IBrightnessSelectorPr
         <BrightnessSlider setBrightness={setBrightness} brightness={brightness} />
       </Col>
       <Col flex="inherit">
-        <BrightnessButton setBrightness={setBrightness} value={1}>
+        <BrightnessButton setBrightness={setBrightness} brightness={brightness} value={1}>
           Max
         </BrightnessButton>
       </Col>
