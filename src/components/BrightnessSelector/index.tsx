@@ -12,7 +12,7 @@ interface IBrightnessSelectorProps {
 
 const BrightnessSelector = ({ brightness, setBrightness }: IBrightnessSelectorProps) => {
   return (
-    <Row style={{ width: '100%' }}>
+    <Row style={{ width: '100%', padding: '0.5em' }}>
       <Col flex="inherit">
         <BrightnessButton setBrightness={setBrightness} brightness={brightness} value={0}>
           Off
