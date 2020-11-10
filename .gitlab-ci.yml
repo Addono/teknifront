@@ -7,7 +7,7 @@ stages:
 variables:
   npm_config_cache: "$CI_PROJECT_DIR/.npm"
 
-test:
+.test_template: &test_definition
   stage: test
   script:
     # Install all dependencies
@@ -29,13 +29,25 @@ test:
     - branches
     - tags
 
+test_node12:
+  <<: *test_definition
+  image: node:12
+
+test_node14:
+  <<: *test_definition
+  image: node:14
+
+test_node15:
+  <<: *test_definition
+  image: node:15
+
 coverage:
   stage: coverage
   script:
     # Upload code coverage
     - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
   dependencies:
-    - test
+    - test_node15
   only:
     - branches
     - tags
