@@ -14,6 +14,6 @@ module.exports = override(
         ...darkThemeVars,
         '@body-background': '#2A2A34',
       },
-    }
+    },
   })
 )
