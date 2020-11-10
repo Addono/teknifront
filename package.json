@@ -24,7 +24,7 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
-    "lint": "prettier -l '{{src,public}/**/*,*}.{js,jsx,ts,tsx,css,json,md}'",
+    "lint": "prettier -l '{{src,public}/**/*,*}.{js,jsx,ts,tsx,css,json,md,html}'",
     "coverage": "codecov"
   },
   "eslintConfig": {
@@ -70,6 +70,6 @@
     "printWidth": 110
   },
   "lint-staged": {
-    "{{src,public}/**/*,*}.{js,jsx,ts,tsx,css,json,md}": "prettier --write"
+    "{{src,public}/**/*,*}.{js,jsx,ts,tsx,css,json,md,html}": "prettier --write"
   }
 }
