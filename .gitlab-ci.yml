@@ -48,7 +48,7 @@ coverage:
   script:
     # Upload code coverage
     - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
-  dependencies:
+  needs:
     - test_node15
   only:
     - branches
