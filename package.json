@@ -26,7 +26,8 @@
     "eject": "react-scripts eject",
     "lint": "prettier -l '{{src,public}/**/*,*}.{js,jsx,ts,tsx,css,json,md,html}'",
     "format": "yarn lint --write",
-    "coverage": "codecov"
+    "coverage": "codecov",
+    "pwa:icons:generate": "npx pwa-asset-generator src/logo.png ./public/images/manifest/ --path '%PUBLIC_URL%' --path-override 'images/manifest' --index public/index.html --manifest public/manifest.json && prettier --write public/index.html"
   },
   "eslintConfig": {
     "extends": "react-app"
