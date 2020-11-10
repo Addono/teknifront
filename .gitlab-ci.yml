@@ -5,7 +5,7 @@ stages:
  - coverage
 
 variables:
-  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+  yarn_config_cache: "$CI_PROJECT_DIR/.yarn"
 
 .test_template: &test_definition
   stage: test
@@ -21,7 +21,7 @@ variables:
       files:
         - yarn.lock
     paths:
-      - .npm
+      - .yarn
       - node_modules
   artifacts:
     paths:
