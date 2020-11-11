@@ -7,7 +7,8 @@ import LightController from '../components/LightController'
 import State from '../interfaces/State'
 
 const MQTT_OPTIONS: IClientPublishOptions = { qos: 2, retain: true }
-const MQTT_CHANNEL_PREFIX = 'tek/staging/light/1'
+const MQTT_CHANNEL_ENVIRONMENT = process.env.REACT_APP_MQTT_ENVIRONMENT ?? 'staging'
+const MQTT_CHANNEL_PREFIX = `tek/${MQTT_CHANNEL_ENVIRONMENT}/light/1`
 
 const sendStateUpdateMessage = (client: MqttClient, state: State) =>
   client.publish(`${MQTT_CHANNEL_PREFIX}/state`, JSON.stringify(state), MQTT_OPTIONS)
