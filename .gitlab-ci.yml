@@ -3,6 +3,7 @@ image: node:current
 stages:
  - test
  - coverage
+ - staging
 
 variables:
   yarn_config_cache: "$CI_PROJECT_DIR/.yarn"
@@ -43,14 +44,23 @@ test_node15:
   <<: *test_definition
   image: node:15
 
+deploy_staging:
+  stage: staging
+  script:
+    - export STAGING_URL=$(npx vercel@20 --token $VERCEL_TOKEN --confirm)
+    - echo "STAGING_URL=$STAGING_URL" >> build.env
+  artifacts:
+    reports:
+      dotenv: build.env
+
 coverage:
   stage: coverage
   script:
     # Upload code coverage
     - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
   needs:
-    - test_node15
+    - job: test_node15
+      artifacts: true
   only:
     - branches
     - tags
-
