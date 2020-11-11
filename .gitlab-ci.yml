@@ -4,6 +4,7 @@ stages:
  - test
  - coverage
  - staging
+ - test_staging
 
 variables:
   yarn_config_cache: "$CI_PROJECT_DIR/.yarn"
@@ -47,11 +48,35 @@ test_node15:
 deploy_staging:
   stage: staging
   script:
-    - export STAGING_URL=$(npx vercel@20 --build-env REACT_APP_MQTT_ENVIRONMENT=staging --token $VERCEL_TOKEN --confirm)
+    - npm install -g vercel@20
+    - export STAGING_URL=$(vercel --build-env REACT_APP_MQTT_ENVIRONMENT=staging --token $VERCEL_TOKEN --confirm)
+    - echo "Staging Deployment Live at $STAGING_URL"
     - echo "STAGING_URL=$STAGING_URL" >> build.env
   artifacts:
     reports:
       dotenv: build.env
+
+e2e_test_staging:
+  stage: test_staging
+  image: docker:19.03.12
+  services:
+    - docker:19.03.12-dind
+  script:
+    - echo "Testing Staging Deployment $STAGING_URL"
+    - docker login docker.pkg.github.com --username $GITHUB_CONTAINER_REGISTRY_USERNAME --password $GITHUB_CONTAINER_REGISTRY_TOKEN
+    - |
+      docker run --rm -v $(pwd)/e2e/tests/:/test \
+        $RF_BROWSER_DOCKER_IMAGE \
+        bash -c "robot --variable headless:true --variable hostname:$STAGING_URL --outputdir /test/output /test"
+  variables:
+    RF_BROWSER_DOCKER_IMAGE: docker.pkg.github.com/marketsquare/robotframework-browser/rfbrowser-stable:v2.1.0
+  artifacts:
+    paths:
+      - e2e/tests/output/
+    when: always
+  needs:
+    - job: deploy_staging
+      artifacts: true
 
 coverage:
   stage: coverage
