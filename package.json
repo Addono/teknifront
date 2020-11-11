@@ -27,7 +27,7 @@
     "lint": "prettier -l '{{src,public}/**/*,*}.{js,jsx,ts,tsx,css,json,md,html}'",
     "format": "yarn lint --write",
     "coverage": "codecov",
-    "pwa:icons:generate": "npx pwa-asset-generator src/logo.png ./public/images/manifest/ --path '%PUBLIC_URL%' --path-override 'images/manifest' --index public/index.html --manifest public/manifest.json && prettier --write public/index.html"
+    "pwa:icons:generate": "npx pwa-asset-generator src/logo.png ./public/images/manifest/ --path '%PUBLIC_URL%' --path-override 'images/manifest' --index public/index.html --manifest public/manifest.json --background '#2a2a34' && prettier --write public/index.html"
   },
   "eslintConfig": {
     "extends": "react-app"
