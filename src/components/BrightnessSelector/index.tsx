@@ -13,7 +13,7 @@ interface IBrightnessSelectorProps {
 const BrightnessSelector = ({ brightness, setBrightness }: IBrightnessSelectorProps) => {
   return (
     <Row style={{ width: '100%', padding: '0.5em' }}>
-      <Col flex="inherit">
+      <Col flex="inherit" data-test-id={'brightness-button-off'}>
         <BrightnessButton setBrightness={setBrightness} brightness={brightness} value={0}>
           Off
         </BrightnessButton>
@@ -21,7 +21,7 @@ const BrightnessSelector = ({ brightness, setBrightness }: IBrightnessSelectorPr
       <Col flex="auto" style={{ padding: '0 1em 0 1em' }}>
         <BrightnessSlider setBrightness={setBrightness} brightness={brightness} />
       </Col>
-      <Col flex="inherit">
+      <Col flex="inherit" data-test-id={'brightness-button-on'}>
         <BrightnessButton setBrightness={setBrightness} brightness={brightness} value={1}>
           Max
         </BrightnessButton>

@@ -15,21 +15,23 @@ const BrightnessSlider = ({ brightness, setBrightness }: IBrightnessSliderProps)
   const [overwrittenBrightness, setOverwrittenBrightness] = React.useState<number | null>(null)
 
   return (
-    <Slider
-      step={0.01}
-      tipFormatter={(value) => `${Math.round((value ?? 0) * 100)}%`}
-      max={1}
-      value={overwrittenBrightness ?? brightness}
-      onChange={(value: any) => typeof value === 'number' && setOverwrittenBrightness(value)}
-      onAfterChange={(value: any) => {
-        // Stop overwriting the brightness
-        setOverwrittenBrightness(null)
+    <div data-test-id={'brightness-slider'}>
+      <Slider
+        step={0.01}
+        tipFormatter={(value) => `${Math.round((value ?? 0) * 100)}%`}
+        max={1}
+        value={overwrittenBrightness ?? brightness}
+        onChange={(value: any) => typeof value === 'number' && setOverwrittenBrightness(value)}
+        onAfterChange={(value: any) => {
+          // Stop overwriting the brightness
+          setOverwrittenBrightness(null)
 
-        // Update the brightness
-        typeof value === 'number' && setBrightness(value)
-      }}
-      className={'brightness-slider'}
-    />
+          // Update the brightness
+          typeof value === 'number' && setBrightness(value)
+        }}
+        className={'brightness-slider'}
+      />
+    </div>
   )
 }
 
