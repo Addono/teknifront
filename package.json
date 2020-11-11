@@ -29,7 +29,7 @@
     "coverage": "codecov",
     "icons:generate": "yarn icons:generate:favicon && yarn icons:generate:manifest && prettier --write public/{index.html,manifest.json}",
     "icons:generate:@template": "npx pwa-asset-generator src/logo.png ./public/images/manifest/ --path '%PUBLIC_URL%' --path-override 'images/manifest' --index public/index.html --manifest public/manifest.json --dark-mode",
-    "icons:generate:manifest": "yarn icons:generate:@template --background '#2a2a34' --padding '15%'",
+    "icons:generate:manifest": "yarn icons:generate:@template --background '#2a2a34' --padding '20%'",
     "icons:generate:favicon": "yarn icons:generate:@template --favicon --opaque false --type png --icon-only"
   },
   "eslintConfig": {
