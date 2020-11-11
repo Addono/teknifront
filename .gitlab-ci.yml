@@ -47,7 +47,7 @@ test_node15:
 deploy_staging:
   stage: staging
   script:
-    - export STAGING_URL=$(npx vercel@20 --token $VERCEL_TOKEN --confirm)
+    - export STAGING_URL=$(npx vercel@20 --build-env REACT_APP_MQTT_ENVIRONMENT=staging --token $VERCEL_TOKEN --confirm)
     - echo "STAGING_URL=$STAGING_URL" >> build.env
   artifacts:
     reports:
