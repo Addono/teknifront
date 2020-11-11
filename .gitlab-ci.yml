@@ -12,7 +12,7 @@ variables:
   script:
     # Install all dependencies
     - yarn install --frozen-lockfile
-    # Run the tests
+    # Run the unit tests
     - yarn test
     # Attempt to build
     - yarn build
