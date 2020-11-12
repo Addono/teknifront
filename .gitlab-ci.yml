@@ -96,27 +96,28 @@ coverage:
     - branches
     - tags
 
-build-docker-image:
-  stage: build
+.dind_template: &dind_definition
   image: docker:19.03.12
   services:
     - docker:19.03.12-dind
-  script:
+  before_script:
     # Authenticate to the container registry
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
+build-docker-image:
+  <<: *dind_definition
+  stage: build
+  script:
     # Build test image
     - docker build --pull -t $CONTAINER_TEST_IMAGE .
     # Push the test image to the container registry
     - docker push $CONTAINER_TEST_IMAGE
 
 test-docker-image:
+  <<: *dind_definition
   stage: test
-  image: docker:19.03.12
-  services:
-    - docker:19.03.12-dind
   script:
-    # Authenticate to the container registry
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    # Create a Docker network to connect the test enviornment and runner images
     - docker network create $DOCKER_NETWORK_NAME
     # Run the test image in the background
     - |
@@ -142,12 +143,8 @@ test-docker-image:
 
 release-docker-image:
   stage: release
-  image: docker:19.03.12
-  services:
-    - docker:19.03.12-dind
+  <<: *dind_definition
   script:
-    # Authenticate to the container registry
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     # Pull the images we build earlier
     - docker pull $CONTAINER_TEST_IMAGE
     # Tag it as the release candidate
