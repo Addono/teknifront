@@ -15,6 +15,7 @@ variables:
   DOCKER_TLS_CERTDIR: "/certs"
   CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
   CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:latest
+  RF_BROWSER_DOCKER_IMAGE: docker.pkg.github.com/marketsquare/robotframework-browser/rfbrowser-stable:v2.1.0
 
 .test_template: &test_definition
   stage: test
@@ -75,8 +76,6 @@ e2e_test_staging:
       docker run --rm -v $(pwd)/e2e/tests/:/test \
         $RF_BROWSER_DOCKER_IMAGE \
         bash -c "robot --variable headless:true --variable hostname:$STAGING_URL --outputdir /test/output /test"
-  variables:
-    RF_BROWSER_DOCKER_IMAGE: docker.pkg.github.com/marketsquare/robotframework-browser/rfbrowser-stable:v2.1.0
   artifacts:
     paths:
       - e2e/tests/output/
@@ -110,6 +109,37 @@ build-docker-image:
     # Push the test image to the container registry
     - docker push $CONTAINER_TEST_IMAGE
 
+test-docker-image:
+  stage: test
+  image: docker:19.03.12
+  services:
+    - docker:19.03.12-dind
+  script:
+    # Authenticate to the container registry
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker network create $DOCKER_NETWORK_NAME
+    # Run the test image in the background
+    - |
+      docker run \
+        --detach --name teknifront --net $DOCKER_NETWORK_NAME --rm \
+        $CONTAINER_TEST_IMAGE
+    # Log into Github Container Registry to be able to run the RF-Browser image
+    - docker login docker.pkg.github.com --username $GITHUB_CONTAINER_REGISTRY_USERNAME --password $GITHUB_CONTAINER_REGISTRY_TOKEN
+    # Run our end-to-end tests against the test environment
+    - |
+      docker run --volume $(pwd)/e2e/tests/:/test --net $DOCKER_NETWORK_NAME --rm \
+        $RF_BROWSER_DOCKER_IMAGE \
+        bash -c "robot --variable headless:true --variable hostname:http://teknifront --outputdir /test/output /test"
+  variables:
+    DOCKER_NETWORK_NAME: e2e-test-network
+    TEKNIFRONT_PORT: 8080
+  artifacts:
+    paths:
+      - e2e/tests/output/
+    when: always
+  needs:
+    - job: build-docker-image
+
 release-docker-image:
   stage: release
   image: docker:19.03.12
@@ -126,6 +156,7 @@ release-docker-image:
     - docker push $CONTAINER_RELEASE_IMAGE
   needs:
     - job: build-docker-image
+    - job: test-docker-image
     - job: e2e_test_staging
     - job: test_node14
   only:
