@@ -80,7 +80,6 @@ e2e_test_staging:
     when: always
   needs:
     - job: deploy_staging
-      artifacts: true
 
 coverage:
   stage: coverage
@@ -89,7 +88,6 @@ coverage:
     - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
   needs:
     - job: test_node15
-      artifacts: true
 
 .dind_template: &dind_definition
   image: docker:19.03.12
