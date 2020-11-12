@@ -37,7 +37,6 @@ variables:
     paths:
       - coverage
   only:
-    - merge_requests
     - branches
     - tags
 
