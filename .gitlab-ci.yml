@@ -6,9 +6,15 @@ stages:
  - coverage
  - staging
  - test_staging
+ - release
 
 variables:
   yarn_config_cache: "$CI_PROJECT_DIR/.yarn"
+  # Use TLS https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#tls-enabled
+  DOCKER_HOST: tcp://docker:2376
+  DOCKER_TLS_CERTDIR: "/certs"
+  CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:latest
 
 .test_template: &test_definition
   stage: test
@@ -45,18 +51,6 @@ test_node14:
 test_node15:
   <<: *test_definition
   image: node:15
-
-build_docker:
-  stage: build
-  image: docker:19.03.12
-  services:
-    - docker:19.03.12-dind
-  variables:
-    IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-  script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker build -t $IMAGE_TAG .
-    - docker push $IMAGE_TAG
 
 deploy_staging:
   stage: staging
@@ -102,3 +96,37 @@ coverage:
   only:
     - branches
     - tags
+
+build-docker-image:
+  stage: build
+  image: docker:19.03.12
+  services:
+    - docker:19.03.12-dind
+  script:
+    # Authenticate to the container registry
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    # Build test image
+    - docker build --pull -t $CONTAINER_TEST_IMAGE .
+    # Push the test image to the container registry
+    - docker push $CONTAINER_TEST_IMAGE
+
+release-docker-image:
+  stage: release
+  image: docker:19.03.12
+  services:
+    - docker:19.03.12-dind
+  script:
+    # Authenticate to the container registry
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    # Pull the images we build earlier
+    - docker pull $CONTAINER_TEST_IMAGE
+    # Tag it as the release candidate
+    - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
+    # Push it as the release candidate
+    - docker push $CONTAINER_RELEASE_IMAGE
+  needs:
+    - job: build-docker-image
+    - job: e2e_test_staging
+    - job: test_node14
+  only:
+    - master
