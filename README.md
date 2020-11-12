@@ -106,6 +106,16 @@ See the Create-React-App documentation about [deployment](https://facebook.githu
 
 Deploy the static files to a CDN. We would recommend using continious deployment to automate this process, e.g. by using [Zeit Now](https://zeit.co/now) which shouldn't need any configuration to setup.
 
+### Manually
+
+After setting up the project, create a build:
+
+```bash
+yarn build
+```
+
+This will emit the project as a static website in the `build/` directory. Deploy these to a CDN or your self-hosted solution for serving static files.
+
 ## ⛏️ Built Using <a name = "built_using"></a>
 
 - [React](https://reactjs.org/) - Frontend Framework
