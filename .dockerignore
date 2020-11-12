@@ -1,0 +1,19 @@
+# Ignore all files and folders starting with a dot
+.*
+
+# Ignore the coverage directory
+coverage/
+
+# Ignore e2e tests
+e2e/
+
+# Ignore node_modules
+node_modules/
+
+# Ignore documentation
+.md
+.txt
+
+# Ignore logs
+.log
+
