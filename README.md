@@ -116,6 +116,16 @@ yarn build
 
 This will emit the project as a static website in the `build/` directory. Deploy these to a CDN or your self-hosted solution for serving static files.
 
+### Docker
+
+There are Docker images available at [Gitlab Container Registry](https://gitlab.com/tekniot/teknifront/container_registry), or you can build them yourself.
+
+For example, the following command exploses the application at port [`http://localhost:3000`](http://localhost:3000).
+
+```bash
+docker run --rm --detach --publish 3000:80 --name teknifront registry.gitlab.com/tekniot/teknifront:latest
+```
+
 ## ⛏️ Built Using <a name = "built_using"></a>
 
 - [React](https://reactjs.org/) - Frontend Framework
