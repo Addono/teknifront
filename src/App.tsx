@@ -4,10 +4,8 @@ import './App.css'
 
 import { Layout, Typography, Collapse, Spin } from 'antd'
 
-const ConnectivityStateIndicator = React.lazy(
-  () => import('./components/ConnectivityStateIndicator/ConnectivityStateIndicator')
-)
-const ControlPage = React.lazy(() => import('./pages/ControlPage'))
+import ConnectivityStateIndicator from './components/ConnectivityStateIndicator/ConnectivityStateIndicator'
+import ControlPage from './pages/ControlPage'
 
 const { Header, Content, Footer } = Layout
 const { Title, Text } = Typography
