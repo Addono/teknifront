@@ -17,7 +17,7 @@ variables:
   CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:latest
   RF_BROWSER_DOCKER_IMAGE: docker.pkg.github.com/marketsquare/robotframework-browser/rfbrowser-stable:v2.1.0
 
-.test_template: &test_definition
+.test_local_template: &test_local_definition
   stage: test
   script:
     # Install all dependencies
@@ -38,16 +38,16 @@ variables:
       - coverage
   needs: []
 
-test_node12:
-  <<: *test_definition
+test_local_node12:
+  <<: *test_local_definition
   image: node:12
 
-test_node14:
-  <<: *test_definition
+test_local_node14:
+  <<: *test_local_definition
   image: node:14
 
-test_node15:
-  <<: *test_definition
+test_local_node15:
+  <<: *test_local_definition
   image: node:15
 
 deploy_staging:
@@ -87,7 +87,7 @@ coverage:
     # Upload code coverage
     - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
   needs:
-    - job: test_node15
+    - job: test_local_node15
 
 .dind_template: &dind_definition
   image: docker:19.03.12
@@ -96,6 +96,11 @@ coverage:
   before_script:
     # Authenticate to the container registry
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
+
+###############################
+#  Build & Test Docker Image  #
+###############################
 
 build-docker-image:
   <<: *dind_definition
@@ -136,8 +141,8 @@ test-docker-image:
     - job: build-docker-image
 
 release-docker-image:
-  stage: release
   <<: *dind_definition
+  stage: release
   script:
     # Pull the images we build earlier
     - docker pull $CONTAINER_TEST_IMAGE
@@ -149,6 +154,6 @@ release-docker-image:
     - job: build-docker-image
     - job: test-docker-image
     - job: e2e_test_staging
-    - job: test_node14
+    - job: test_local_node14
   only:
     - master
