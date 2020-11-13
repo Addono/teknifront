@@ -77,7 +77,7 @@ deploy_staging:
   image: node:14
   script:
     - npm install -g vercel@20
-    - export STAGING_URL=$(vercel --build-env REACT_APP_MQTT_ENVIRONMENT=staging --token $VERCEL_TOKEN --confirm)
+    - export STAGING_URL=$(vercel --token $VERCEL_TOKEN --confirm)
     - echo "Staging Deployment Live at $STAGING_URL"
     - echo "STAGING_URL=$STAGING_URL" >> build.env
   artifacts:
@@ -96,7 +96,7 @@ e2e_test_staging:
     - |
       docker run --rm -v $(pwd)/e2e/tests/:/test \
         $RF_BROWSER_DOCKER_IMAGE \
-        bash -c "robot --variable headless:true --variable hostname:$STAGING_URL --outputdir /test/output /test"
+        bash -c "robot --variable headless:true --variable hostname:$STAGING_URL/?env=ci-staging-$CI_JOB_ID --outputdir /test/output /test"
   artifacts:
     paths:
       - e2e/tests/output/
@@ -148,7 +148,7 @@ test-docker-image:
     - |
       docker run --volume $(pwd)/e2e/tests/:/test --net $DOCKER_NETWORK_NAME --rm \
         $RF_BROWSER_DOCKER_IMAGE \
-        bash -c "robot --variable headless:true --variable hostname:http://teknifront --outputdir /test/output /test"
+        bash -c "robot --variable headless:true --variable hostname:http://teknifront/?env=ci-docker-$CI_JOB_ID --outputdir /test/output /test"
   variables:
     DOCKER_NETWORK_NAME: e2e-test-network
     TEKNIFRONT_PORT: 8080
