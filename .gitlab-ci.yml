@@ -8,7 +8,6 @@ stages:
  - release
 
 variables:
-  yarn_config_cache: "$CI_PROJECT_DIR/.yarn"
   # Use TLS https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#tls-enabled
   DOCKER_HOST: tcp://docker:2376
   DOCKER_TLS_CERTDIR: "/certs"
@@ -20,6 +19,7 @@ variables:
 #  Templates  #
 ###############
 
+# Privions a step with a Docker-in-Docker environment
 .dind_template: &dind_definition
   image: docker:19.03.12
   services:
@@ -28,7 +28,8 @@ variables:
     # Authenticate to the container registry
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
 
-.test_local_template: &test_local_definition
+# Unit tests the application directly within Node.js
+.unit_test_local_template: &unit_test_local_definition
   stage: test
   script:
     # Install all dependencies
@@ -44,6 +45,8 @@ variables:
     paths:
       - .yarn
       - node_modules
+  variables:
+    YARN_CONFIG_CACHE: "$CI_PROJECT_DIR/.yarn"
   artifacts:
     paths:
       - coverage
@@ -53,16 +56,16 @@ variables:
 #  Unit Test Locally  #
 #######################
 
-test_local_node12:
-  <<: *test_local_definition
+unit_test_local_node12:
+  <<: *unit_test_local_definition
   image: node:12
 
-test_local_node14:
-  <<: *test_local_definition
+unit_test_local_node14:
+  <<: *unit_test_local_definition
   image: node:14
 
-test_local_node15:
-  <<: *test_local_definition
+unit_test_local_node15:
+  <<: *unit_test_local_definition
   image: node:15
 
 #############################
@@ -112,7 +115,7 @@ coverage:
     # Upload code coverage
     - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
   needs:
-    - job: test_local_node15
+    - job: unit_test_local_node15
 
 ###########################################
 #  Docker Image: Build, Test and Release  #
@@ -170,6 +173,6 @@ release-docker-image:
     - job: build-docker-image
     - job: test-docker-image
     - job: e2e_test_staging
-    - job: test_local_node14
+    - job: unit_test_local_node14
   only:
     - master
