@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { IClientPublishOptions, connect, MqttClient } from 'mqtt'
 import Color from '../interfaces/Color'
-import { Spin, Button, notification } from 'antd'
+import { Spin, notification } from 'antd'
 import LightController from '../components/LightController'
 import State from '../interfaces/State'
 
@@ -18,28 +18,6 @@ const sendStateUpdateMessage = (client: MqttClient, state: State) =>
 
 const sendBrightness = (client: MqttClient, brightness: number) =>
   client.publish(`${MQTT_CHANNEL_PREFIX}/brightness`, JSON.stringify({ brightness }), MQTT_OPTIONS)
-
-const createTimeoutNotification = (client: MqttClient) =>
-  notification.open({
-    message: 'Hmmm 🤔',
-    description: "We couldn't find any previous configuration for this light.",
-    key: 'timeout_notification',
-    duration: 0,
-    btn: (
-      <Button
-        type="primary"
-        size="small"
-        onClick={() =>
-          sendStateUpdateMessage(client, {
-            transition: 'fade',
-            params: { red: 1, green: 1, blue: 1 },
-          })
-        }
-      >
-        Initialize with defaults
-      </Button>
-    ),
-  })
 
 const ControlPage = () => {
   const [client, setClient] = useState<MqttClient>()
@@ -57,8 +35,16 @@ const ControlPage = () => {
       client.subscribe(`${MQTT_CHANNEL_PREFIX}/#`)
       setClient(client)
 
-      // Create the retrieve state timeout notification
-      timeoutReference.current = setTimeout(() => createTimeoutNotification(client), 1000)
+      // Initializes the MQTT channel
+      const initializeDefaults = () => {
+        sendStateUpdateMessage(client, {
+          transition: 'fade',
+          params: { red: 1, green: 1, blue: 1 },
+        })
+      }
+
+      // Attempt to re-initialize the application after the timeout has passed
+      timeoutReference.current = setTimeout(initializeDefaults, 1000)
     })
 
     return () => timeoutReference.current && clearTimeout(timeoutReference.current)
