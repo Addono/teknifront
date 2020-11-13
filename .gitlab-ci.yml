@@ -16,6 +16,18 @@ variables:
   CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:latest
   RF_BROWSER_DOCKER_IMAGE: docker.pkg.github.com/marketsquare/robotframework-browser/rfbrowser-stable:v2.1.0
 
+###############
+#  Templates  #
+###############
+
+.dind_template: &dind_definition
+  image: docker:19.03.12
+  services:
+    - docker:19.03.12-dind
+  before_script:
+    # Authenticate to the container registry
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
 .test_local_template: &test_local_definition
   stage: test
   script:
@@ -37,6 +49,10 @@ variables:
       - coverage
   needs: []
 
+#######################
+#  Unit Test Locally  #
+#######################
+
 test_local_node12:
   <<: *test_local_definition
   image: node:12
@@ -48,6 +64,10 @@ test_local_node14:
 test_local_node15:
   <<: *test_local_definition
   image: node:15
+
+#############################
+#  Create and Test Staging  #
+#############################
 
 deploy_staging:
   stage: staging
@@ -81,6 +101,10 @@ e2e_test_staging:
   needs:
     - job: deploy_staging
 
+###################
+#  Code Analysis  #
+###################
+
 coverage:
   stage: coverage
   image: node:14
@@ -90,18 +114,9 @@ coverage:
   needs:
     - job: test_local_node15
 
-.dind_template: &dind_definition
-  image: docker:19.03.12
-  services:
-    - docker:19.03.12-dind
-  before_script:
-    # Authenticate to the container registry
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-
-
-###############################
-#  Build & Test Docker Image  #
-###############################
+###########################################
+#  Docker Image: Build, Test and Release  #
+###########################################
 
 build-docker-image:
   <<: *dind_definition
