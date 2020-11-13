@@ -1,4 +1,3 @@
-
 stages:
  - build
  - test
@@ -116,6 +115,7 @@ coverage:
     - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
   needs:
     - job: unit_test_local_node15
+  allow_failure: true
 
 ###########################################
 #  Docker Image: Build, Test and Release  #
