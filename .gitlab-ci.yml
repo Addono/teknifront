@@ -75,8 +75,12 @@ deploy_staging:
   stage: staging
   image: node:14
   script:
+    # Deploy a staging environment to Vercel
     - npm install -g vercel@20
     - export STAGING_URL=$(vercel --token $VERCEL_TOKEN --scope $VERCEL_SCOPE --confirm)
+    # Validate that our deployment resulted in a publicly accessible website
+    - curl $STAGING_URL
+    # Make the staging url available for future steps
     - echo "Staging Deployment Live at $STAGING_URL"
     - echo "STAGING_URL=$STAGING_URL" >> build.env
   artifacts:
