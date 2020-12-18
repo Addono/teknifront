@@ -13,7 +13,7 @@
     "less-loader": "^7.0.2",
     "mqtt": "^4.2.6",
     "react": "^17.0.1",
-    "react-app-rewired": "^2.1.7",
+    "react-app-rewired": "^2.1.8",
     "react-detect-offline": "^2.4.0",
     "react-dom": "^17.0.1",
     "react-scripts": "^3.4.4",
