@@ -24,17 +24,22 @@ const colorToHue = ({ red, green, blue }: Color): number => {
 }
 
 const CircularColorPicker = ({ onColorChange, color }: ICircularColorPickerProps) => {
-  const [lastSelectedColor, setLastSelectedColor] = useState<Color>(color)
-
-  const hue = colorToHue(color)
+  // Contains the currently selected color when the user is giving their input,
+  // else it is undefined while the user it not selecting any color.
+  const [temporarySelectedColor, setTemporarilySelectedColor] = useState<Color | undefined>(undefined)
 
   return (
     <ColorPicker
-      hue={hue}
-      onChange={() => onColorChange(lastSelectedColor)}
-      onInput={(hue: number) => {
-        setLastSelectedColor(hueToColor(hue))
+      hue={colorToHue(temporarySelectedColor ?? color)}
+      onChange={(hue) => {
+        // Notify parent components that the color is changed
+        onColorChange(hueToColor(hue))
+
+        // Give control back to the
+        setTemporarilySelectedColor(undefined)
       }}
+      onInput={(hue) => setTemporarilySelectedColor(hueToColor(hue))}
+      variant={'persistent'}
     />
   )
 }
