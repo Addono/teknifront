@@ -9,7 +9,7 @@
     "babel-plugin-import": "^1.13.3",
     "color-convert": "^2.0.1",
     "customize-cra": "^1.0.0",
-    "less": "^3.13.1",
+    "less": "^4.1.1",
     "less-loader": "^7.3.0",
     "mqtt": "^4.2.6",
     "react": "^17.0.2",
