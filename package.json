@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@ant-design/icons": "^4.4.0",
+    "@ant-design/icons": "^4.5.0",
     "@radial-color-picker/react-color-picker": "^3.0.0",
     "antd": "^4.10.3",
     "babel-plugin-import": "^1.13.3",
