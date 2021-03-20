@@ -9615,10 +9615,10 @@ react-app-rewired@^2.1.8:
   dependencies:
     semver "^5.6.0"
 
-react-detect-offline@^2.4.2:
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/react-detect-offline/-/react-detect-offline-2.4.2.tgz#2129d11044ecffbe949f21bdaae81010df426f64"
-  integrity sha512-7bZ1dIftMZbmrGOw/MURwWAN1WjT7OgVgm35PJoa/SueaYU9PV12wTrq9xqET2CPbv6G0q5SupT9rpRvRfextg==
+react-detect-offline@^2.4.3:
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/react-detect-offline/-/react-detect-offline-2.4.3.tgz#167c340f86adba719b7d57acef69a2f5664412fa"
+  integrity sha512-YDJRJ1qbCcwCV37yiBGEzC+SeHtqe2kKV9EVYDEo77gm9QFLa2tZesF6ciOSx1A+tmMAZGtBD38VHdBQVe4yAA==
 
 react-dev-utils@^10.2.1:
   version "10.2.1"
