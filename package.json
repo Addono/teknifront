@@ -57,7 +57,7 @@
     "@types/react": "^17.0.24",
     "@types/react-dom": "^17.0.10",
     "codecov": "^3.8.3",
-    "husky": "^4.3.8",
+    "husky": "^7.0.4",
     "lint-staged": "^11.2.3",
     "prettier": "^2.4.1"
   },
